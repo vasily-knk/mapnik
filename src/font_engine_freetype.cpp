@@ -304,19 +304,11 @@ face_ptr freetype_engine::create_face(std::string const& family_name)
     auto itr = name2file_.find(family_name);
     if (itr != name2file_.end())
     {
-        FT_Face face;
-
         auto mem_font_itr = memory_fonts_.find(itr->second.second);
 
         if (mem_font_itr != memory_fonts_.end()) // memory font
         {
-            FT_Error error = FT_New_Memory_Face(library_,
-                                                reinterpret_cast<FT_Byte const*>(mem_font_itr->second.first.get()), // data
-                                                static_cast<FT_Long>(mem_font_itr->second.second), // size
-                                                itr->second.first, // face index
-                                                &face);
-
-            if (!error) return std::make_shared<font_face>(face);
+            return std::make_shared<font_face>(mem_font_itr->second.first.get(),mem_font_itr->second.second,itr->second.first);
         }
         else
         {
@@ -338,16 +330,12 @@ face_ptr freetype_engine::create_face(std::string const& family_name)
                 std::unique_ptr<char[]> buffer(new char[file_size]);
                 std::fread(buffer.get(), file_size, 1, file.get());
                 auto result = memory_fonts_.emplace(itr->second.second, std::make_pair(std::move(buffer),file_size));
-                FT_Error error = FT_New_Memory_Face (library_,
-                                                     reinterpret_cast<FT_Byte const*>(result.first->second.first.get()),
-                                                     static_cast<FT_Long>(result.first->second.second),
-                                                     itr->second.first,
-                                                     &face);
-                if (!error) return std::make_shared<font_face>(face);
-                else
-                {
-                    // we can't load font, erase it.
+                face_ptr face = std::make_shared<font_face>(result.first->second.first.get(),result.first->second.second,itr->second.first);
+                if (face && face->is_open()) {
+                    return face;
+                } else {
                     memory_fonts_.erase(result.first);
+                    return face_ptr();
                 }
             }
         }
@@ -380,11 +368,11 @@ face_ptr face_manager<T>::get_face(std::string const& name)
     else
     {
         face_ptr face = engine_.create_face(name);
-        if (face)
+        if (face && face->is_open())
         {
             face_ptr_cache_.emplace(name,face);
         }
-        return face;
+        return face_ptr();
     }
 }
 

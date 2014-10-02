@@ -143,6 +143,7 @@ else: # unix, non-macos
 
 source = Split(
     """
+    font_library.cpp
     marker_helpers.cpp
     dasharray_parser.cpp
     expression_grammar.cpp

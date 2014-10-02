@@ -25,16 +25,32 @@
 
 extern "C"
 {
+#include <ft2build.h>
 #include FT_GLYPH_H
+#include FT_FREETYPE_H
+#include FT_MODULE_H
 }
 
 namespace mapnik
 {
 
-font_face::font_face(FT_Face face)
-    : face_(face),
+font_face::font_face(const char * buffer,
+                     std::size_t size,
+                     int index)
+    : library_(),
       glyph_info_cache_(),
-      char_height_(0.0) {}
+      char_height_(0.0),
+      open_(false)
+    {
+            if (!FT_New_Memory_Face(library_.get(),
+                                                reinterpret_cast<FT_Byte const*>(buffer),
+                                                static_cast<FT_Long>(size),
+                                                index,
+                                                &face_))
+            {
+                open_ = true;
+            }
+    }
 
 double font_face::get_char_height(double size) const
 {

@@ -7,7 +7,8 @@ compiler:
 env:
   matrix:
    #- DEBUG=True  ENABLE_LOG=True  DEFAULT_LOG_SEVERITY=debug XMLPARSER="libxml2" DEMO=False BENCHMARK=False CUSTOM_CXXFLAGS="" CUSTOM_LDFLAGS=""
-   - DEBUG=False ENABLE_LOG=False DEFAULT_LOG_SEVERITY=none  XMLPARSER="ptree"   DEMO=False BENCHMARK=False CUSTOM_CXXFLAGS="" CUSTOM_LDFLAGS=""
+   - DEBUG=False ENABLE_LOG=False DEFAULT_LOG_SEVERITY=none  XMLPARSER="ptree"   DEMO=False BENCHMARK=False CUSTOM_CXXFLAGS="-fsanitize=address" CUSTOM_LDFLAGS="-fsanitize=address"
+   - DEBUG=False ENABLE_LOG=False DEFAULT_LOG_SEVERITY=none  XMLPARSER="ptree"   DEMO=False BENCHMARK=False CUSTOM_CXXFLAGS="-fsanitize=thread" CUSTOM_LDFLAGS="-fsanitize=thread"
 
 # travis + ubuntugis with gdal and postggis leads to many potential dead-end conflicts
 # the below is thanks to https://github.com/CartoDB/Windshaft/blob/d82fe08b32fc7907bbe907ab290f8a082215ae26/.travis.yml#L1

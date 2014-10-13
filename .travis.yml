@@ -17,7 +17,6 @@ addons:
       name: "mapnik/mapnik"
       description: "Build submitted via Travis CI"
     notification_email: dane@mapbox.com
-    build_command_prepend: "make clean"
     build_command:   "python scons/scons.py -j$JOBS"
     branch_pattern: coverity_scan
 
@@ -52,9 +51,9 @@ before_script:
  - psql -U postgres -c 'create extension postgis' -d template_postgis
  - if [[ "${CXX}" == 'g++' ]]; then export JOBS=2; sudo apt-get install gcc-4.8 g++-4.8; export CXX="$(which g++-4.8)"; export CC="$(which gcc-4.8)"; fi;
  - if [[ "${CXX}" == 'clang++' ]]; then export JOBS=4; export CXX="$(which clang++)"; export CC="$(which clang)"; fi;
+ - ./configure CXX="${CXX}" CC="${CC}" CUSTOM_CXXFLAGS="${CUSTOM_CXXFLAGS}" CUSTOM_LDFLAGS="${CUSTOM_LDFLAGS}" XML_PARSER="${XML_PARSER}" ENABLE_LOG="${ENABLE_LOG}" DEBUG="${DEBUG}" DEMO="${DEMO}" BENCHMARK="${BENCHMARK}" CPP_TESTS=True CAIRO=True FAST=True || cat config.log
 
 script:
- - ./configure CXX="${CXX}" CC="${CC}" CUSTOM_CXXFLAGS="${CUSTOM_CXXFLAGS}" CUSTOM_LDFLAGS="${CUSTOM_LDFLAGS}" XML_PARSER="${XML_PARSER}" ENABLE_LOG="${ENABLE_LOG}" DEBUG="${DEBUG}" DEMO="${DEMO}" BENCHMARK="${BENCHMARK}" CPP_TESTS=True CAIRO=True FAST=True || cat config.log
  - if [[ "${DEBUG}" == True ]]; then export JOBS=$((JOBS/2)); fi;
  - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then make ; fi
  - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then git clone https://github.com/mapbox/mapnik-test-data tests/data/mapnik-test-data ; fi

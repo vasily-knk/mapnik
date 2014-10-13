@@ -1,7 +1,7 @@
 language: cpp
 
 compiler:
- #- clang
+ - clang
  - gcc
 
 env:
@@ -52,7 +52,7 @@ before_script:
  - psql -U postgres -c 'create extension postgis' -d template_postgis
  - if [[ "${CXX}" == 'g++' ]]; then export JOBS=2; sudo apt-get install gcc-4.8 g++-4.8; export CXX="$(which g++-4.8)"; export CC="$(which gcc-4.8)"; fi;
  - if [[ "${CXX}" == 'clang++' ]]; then export JOBS=4; export CXX="$(which clang++)"; export CC="$(which clang)"; fi;
- - ./configure CXX="${CXX}" CC="${CC}" CUSTOM_CXXFLAGS="${CUSTOM_CXXFLAGS}" CUSTOM_LDFLAGS="${CUSTOM_LDFLAGS}" XML_PARSER="${XML_PARSER}" ENABLE_LOG="${ENABLE_LOG}" DEBUG="${DEBUG}" DEMO="${DEMO}" BENCHMARK="${BENCHMARK}" CPP_TESTS=True CAIRO=True FAST=True || cat config.log
+ - ./configure CXX="${CXX}" BINDINGS='' CC="${CC}" CUSTOM_CXXFLAGS="${CUSTOM_CXXFLAGS}" CUSTOM_LDFLAGS="${CUSTOM_LDFLAGS}" XML_PARSER="${XML_PARSER}" ENABLE_LOG="${ENABLE_LOG}" DEBUG="${DEBUG}" DEMO="${DEMO}" BENCHMARK="${BENCHMARK}" CPP_TESTS=False CAIRO=False FAST=True || cat config.log
 
 script:
  - if [[ "${DEBUG}" == True ]]; then export JOBS=$((JOBS/2)); fi;

@@ -56,9 +56,9 @@ before_script:
 script:
  - ./configure CXX="${CXX}" CC="${CC}" CUSTOM_CXXFLAGS="${CUSTOM_CXXFLAGS}" CUSTOM_LDFLAGS="${CUSTOM_LDFLAGS}" XML_PARSER="${XML_PARSER}" ENABLE_LOG="${ENABLE_LOG}" DEBUG="${DEBUG}" DEMO="${DEMO}" BENCHMARK="${BENCHMARK}" CPP_TESTS=True CAIRO=True FAST=True || cat config.log
  - if [[ "${DEBUG}" == True ]]; then export JOBS=$((JOBS/2)); fi;
- - make
- - git clone https://github.com/mapbox/mapnik-test-data tests/data/mapnik-test-data
- - make test
- - source localize.sh && make grind
- - if [[ ${BENCHMARK} != False ]]; then make bench; fi;
- - if [[ ${BENCHMARK} != False ]]; then for i in $(ls tests/visual_tests/styles/*xml); do echo $i;./benchmark/out/test_rendering --name "text rendering" --map $i --width 1024 --height 1024 --iterations 2 --threads 10;done;fi
+ - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then make ; fi
+ - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then git clone https://github.com/mapbox/mapnik-test-data tests/data/mapnik-test-data ; fi
+ - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then make test ; fi
+ - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then source localize.sh && make grind ; fi
+ - if [ ${COVERITY_SCAN_BRANCH} != 1 ] && [[ ${BENCHMARK} != False ]]; then make bench; fi;
+ - if [ ${COVERITY_SCAN_BRANCH} != 1 ] && [[ ${BENCHMARK} != False ]]; then for i in $(ls tests/visual_tests/styles/*xml); do echo $i;./benchmark/out/test_rendering --name "text rendering" --map $i --width 1024 --height 1024 --iterations 2 --threads 10;done;fi

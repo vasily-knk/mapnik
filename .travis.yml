@@ -8,6 +8,18 @@ env:
   matrix:
    #- DEBUG=True  ENABLE_LOG=True  DEFAULT_LOG_SEVERITY=debug XMLPARSER="libxml2" DEMO=False BENCHMARK=False CUSTOM_CXXFLAGS="" CUSTOM_LDFLAGS=""
    - DEBUG=False ENABLE_LOG=False DEFAULT_LOG_SEVERITY=none  XMLPARSER="ptree"   DEMO=False BENCHMARK=False CUSTOM_CXXFLAGS="" CUSTOM_LDFLAGS=""
+  global:
+   - secure: "byWN3iTAlae5mgskrvnfdVFeCLmTtcUcUawe+q79l8FK+33FYbbRRKndzvi6bG8xdY09wA0WA0ZN/GHIBl69AoLs6cWvnr+75kQXKdNLRfWjcGK1SpGyrMsc3B74TZm39TS/n04ehhVkDkf/Kk11pGNNpLMqZje70pTyEEJW7yk="
+
+addons:
+  coverity_scan:
+    project:
+      name: "mapnik/mapnik"
+      description: "Build submitted via Travis CI"
+    notification_email: dane@mapbox.com
+    build_command_prepend: "make clean"
+    build_command:   "python scons/scons.py -j$JOBS"
+    branch_pattern: coverity_scan
 
 # travis + ubuntugis with gdal and postggis leads to many potential dead-end conflicts
 # the below is thanks to https://github.com/CartoDB/Windshaft/blob/d82fe08b32fc7907bbe907ab290f8a082215ae26/.travis.yml#L1

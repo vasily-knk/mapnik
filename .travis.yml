@@ -1,8 +1,8 @@
 language: cpp
 
 compiler:
- - clang
- #- gcc
+ #- clang
+ - gcc
 
 env:
   matrix:
@@ -17,7 +17,7 @@ addons:
       name: "mapnik/mapnik"
       description: "Build submitted via Travis CI"
     notification_email: dane@mapbox.com
-    build_command:   "python scons/scons.py -j$JOBS"
+    build_command:   "python scons/scons.py -j$JOBS && cat cov-int/build-log.txt"
     branch_pattern: coverity_scan
 
 # travis + ubuntugis with gdal and postggis leads to many potential dead-end conflicts

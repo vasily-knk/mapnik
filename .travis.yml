@@ -17,7 +17,7 @@ addons:
       description: "Build submitted via Travis CI"
     notification_email: dane@mapbox.com
     build_command_prepend: "cov-configure --comptype gcc --compiler $CXX"
-    build_command:   "python scons/scons.py -j$JOBS"
+    build_command:   "python scons/scons.py -j1"
     branch_pattern: coverity_scan
 
 # travis + ubuntugis with gdal and postggis leads to many potential dead-end conflicts

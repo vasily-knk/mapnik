@@ -116,6 +116,7 @@ private:
     void parse_markers_symbolizer(rule & rule, xml_node const& node);
     void parse_group_symbolizer(rule &rule, xml_node const& node);
     void parse_debug_symbolizer(rule & rule, xml_node const& node);
+    void parse_dot_symbolizer(rule & rule, xml_node const& node);
     void parse_group_rule(group_symbolizer_properties &prop, xml_node const& node);
     void parse_simple_layout(group_symbolizer_properties &prop, xml_node const& node);
     void parse_pair_layout(group_symbolizer_properties &prop, xml_node const& node);
@@ -860,6 +861,11 @@ void map_parser::parse_symbolizers(rule & rule, xml_node const & node)
             parse_debug_symbolizer(rule, sym_node);
             sym_node.set_processed(true);
             break;
+        case name2int("DotSymbolizer"):
+            parse_dot_symbolizer(rule, sym_node);
+            sym_node.set_processed(true);
+            break;
+
         default:
             break;
         }
@@ -906,6 +912,25 @@ void map_parser::parse_point_symbolizer(rule & rule, xml_node const & node)
             put(sym, keys::file, parse_path(filename));
         }
 
+        rule.append(std::move(sym));
+    }
+    catch (config_error const& ex)
+    {
+        ex.append_context(node);
+        throw;
+    }
+}
+
+void map_parser::parse_dot_symbolizer(rule & rule, xml_node const & node)
+{
+    try
+    {
+        dot_symbolizer sym;
+        set_symbolizer_property<symbolizer_base,color>(sym, keys::rx, node);
+        set_symbolizer_property<symbolizer_base,color>(sym, keys::ry, node);
+        set_symbolizer_property<symbolizer_base,color>(sym, keys::fill, node);
+        set_symbolizer_property<symbolizer_base,double>(sym, keys::fill_opacity, node);
+        set_symbolizer_property<symbolizer_base,composite_mode_e>(sym, keys::comp_op, node);
         rule.append(std::move(sym));
     }
     catch (config_error const& ex)

@@ -77,6 +77,8 @@ image_filter_grammar<Iterator,ContType>::image_filter_grammar()
         |
         lit("invert") >> no_args [push_back(_val,construct<mapnik::filter::invert>())]
         |
+        lit("dot") >> no_args [push_back(_val,construct<mapnik::filter::dot>())]
+        |
         agg_blur_filter(_val)
         |
         scale_hsla_filter(_val)

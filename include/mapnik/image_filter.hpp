@@ -395,6 +395,14 @@ void apply_filter(Src & src, Filter const& filter)
 }
 
 template <typename Src>
+void apply_filter(Src & src, dot const op)
+{
+    src.demultiply();
+    // work with pixels here
+    src.premultiply();
+}
+
+template <typename Src>
 void apply_filter(Src & src, agg_stack_blur const& op)
 {
     agg::rendering_buffer buf(src.raw_data(),src.width(),src.height(), src.width() * 4);

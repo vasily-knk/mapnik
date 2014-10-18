@@ -54,6 +54,7 @@ struct gray : image_filter_base {};
 struct x_gradient : image_filter_base {};
 struct y_gradient : image_filter_base {};
 struct invert : image_filter_base {};
+struct dot : image_filter_base {};
 
 struct agg_stack_blur : image_filter_base
 {
@@ -169,7 +170,8 @@ using filter_type =  util::variant<filter::blur,
                                    filter::invert,
                                    filter::scale_hsla,
                                    filter::colorize_alpha,
-                                   filter::color_to_alpha>;
+                                   filter::color_to_alpha,
+                                   filter::dot>;
 
 inline std::ostream& operator<< (std::ostream& os, blur)
 {
@@ -246,6 +248,13 @@ inline std::ostream& operator<< (std::ostream& os, invert)
     os << "invert";
     return os;
 }
+
+inline std::ostream& operator<< (std::ostream& os, dot)
+{
+    os << "dot";
+    return os;
+}
+
 
 inline std::ostream& operator<< (std::ostream& os, colorize_alpha const& filter)
 {

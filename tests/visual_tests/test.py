@@ -290,6 +290,7 @@ files = {
     'marker-recenter-collide':{'sizes':[(256,128)], 'bbox':mapnik.Box2d(-1,-0.5,1,0.5)},
     'postgis-inline':{'sizes':[(512,512)]},
     'text-line-wrap':{'sizes':[(512,512)]},
+    'dots':{'sizes':[(512,512)]},
     }
 
 class Reporting:

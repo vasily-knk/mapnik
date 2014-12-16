@@ -33,20 +33,20 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
     @raises(RuntimeError)
     def test_map_query_throw4():
         m = mapnik.Map(256,256)
-        mapnik.load_map(m,'../data/good_maps/agg_poly_gamma_map.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/agg_poly_gamma_map.xml')
         m.query_point(0,0,0)
 
     # invalid coords in general (do not intersect)
     @raises(RuntimeError)
     def test_map_query_throw5():
         m = mapnik.Map(256,256)
-        mapnik.load_map(m,'../data/good_maps/agg_poly_gamma_map.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/agg_poly_gamma_map.xml')
         m.zoom_all()
         m.query_point(0,9999999999999999,9999999999999999)
 
     def test_map_query_works1():
         m = mapnik.Map(256,256)
-        mapnik.load_map(m,'../data/good_maps/wgs842merc_reprojection.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/wgs842merc_reprojection.xml')
         merc_bounds = mapnik.Box2d(-20037508.34,-20037508.34,20037508.34,20037508.34)
         m.maximum_extent = merc_bounds
         m.zoom_all()
@@ -56,7 +56,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     def test_map_query_works2():
         m = mapnik.Map(256,256)
-        mapnik.load_map(m,'../data/good_maps/merc2wgs84_reprojection.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/merc2wgs84_reprojection.xml')
         wgs84_bounds = mapnik.Box2d(-179.999999975,-85.0511287776,179.999999975,85.0511287776)
         m.maximum_extent = wgs84_bounds
         # caution - will go square due to evil aspect_fix_mode backhandedness
@@ -74,7 +74,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     def test_map_query_in_pixels_works1():
         m = mapnik.Map(256,256)
-        mapnik.load_map(m,'../data/good_maps/wgs842merc_reprojection.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/wgs842merc_reprojection.xml')
         merc_bounds = mapnik.Box2d(-20037508.34,-20037508.34,20037508.34,20037508.34)
         m.maximum_extent = merc_bounds
         m.zoom_all()
@@ -84,7 +84,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     def test_map_query_in_pixels_works2():
         m = mapnik.Map(256,256)
-        mapnik.load_map(m,'../data/good_maps/merc2wgs84_reprojection.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/merc2wgs84_reprojection.xml')
         wgs84_bounds = mapnik.Box2d(-179.999999975,-85.0511287776,179.999999975,85.0511287776)
         m.maximum_extent = wgs84_bounds
         # caution - will go square due to evil aspect_fix_mode backhandedness

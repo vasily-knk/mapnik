@@ -12,7 +12,7 @@ def setup():
 if 'csv' in mapnik.DatasourceCache.plugin_names():
     def test_marker_ellipse_render1():
         m = mapnik.Map(256,256)
-        mapnik.load_map(m,'../data/good_maps/marker_ellipse_transform.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/marker_ellipse_transform.xml')
         m.zoom_all()
         im = mapnik.Image(m.width,m.height)
         mapnik.render(m,im)
@@ -25,7 +25,7 @@ if 'csv' in mapnik.DatasourceCache.plugin_names():
     def test_marker_ellipse_render2():
         # currently crashes https://github.com/mapnik/mapnik/issues/1365
         m = mapnik.Map(256,256)
-        mapnik.load_map(m,'../data/good_maps/marker_ellipse_transform2.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/marker_ellipse_transform2.xml')
         m.zoom_all()
         im = mapnik.Image(m.width,m.height)
         mapnik.render(m,im)

@@ -25,7 +25,7 @@ def create_ds(test_db,table):
 if 'sqlite' in mapnik.DatasourceCache.plugin_names():
 
     def test_rtree_creation():
-        test_db = '../data/sqlite/world.sqlite'
+        test_db = '../../test-data/sqlite/world.sqlite'
         index = test_db +'.index'
         table = 'world_merc'
 

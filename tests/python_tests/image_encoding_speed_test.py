@@ -97,7 +97,7 @@ def do_encoding():
         def many_colors():
             return eval('image.tostring("%s")' % c)
         # lots of colors: http://tile.osm.org/13/4194/2747.png
-        many_colors_im = mapnik.Image.open('../data/images/13_4194_2747.png')
+        many_colors_im = mapnik.Image.open('../../test-data/images/13_4194_2747.png')
         for c in combinations:
             t = Timer(many_colors)
             run(many_colors,many_colors_im,c,t)
@@ -105,7 +105,7 @@ def do_encoding():
     if 'aerial_24' in tiles:
         def aerial_24():
             return eval('image.tostring("%s")' % c)
-        aerial_24_im = mapnik.Image.open('../data/images/12_654_1580.png')
+        aerial_24_im = mapnik.Image.open('../../test-data/images/12_654_1580.png')
         for c in combinations:
             t = Timer(aerial_24)
             run(aerial_24,aerial_24_im,c,t)

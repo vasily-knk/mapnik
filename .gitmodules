@@ -1,0 +1,3 @@
+[submodule "visual-tests"]
+	path = visual-tests
+	url = https://github.com/mapnik/visual-tests.git

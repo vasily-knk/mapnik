@@ -26,7 +26,7 @@ def test_append():
 if 'shape' in mapnik.DatasourceCache.plugin_names():
     def test_style_level_image_filter():
         m = mapnik.Map(256, 256)
-        mapnik.load_map(m, '../data/good_maps/style_level_image_filter.xml')
+        mapnik.load_map(m, '../../test-data/good_maps/style_level_image_filter.xml')
         m.zoom_all()
         successes = []
         fails = []

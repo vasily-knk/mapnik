@@ -14,19 +14,19 @@ def setup():
 def test_introspect_symbolizers():
     # create a symbolizer
     p = mapnik.PointSymbolizer()
-    p.file = "../data/images/dummy.png"
+    p.file = "../../test-data/images/dummy.png"
     p.allow_overlap = True
     p.opacity = 0.5
 
     eq_(p.allow_overlap, True)
     eq_(p.opacity, 0.5)
-    eq_(p.filename,'../data/images/dummy.png')
+    eq_(p.filename,'../../test-data/images/dummy.png')
 
     # make sure the defaults
     # are what we think they are
     eq_(p.allow_overlap, True)
     eq_(p.opacity,0.5)
-    eq_(p.filename,'../data/images/dummy.png')
+    eq_(p.filename,'../../test-data/images/dummy.png')
 
     # contruct objects to hold it
     r = mapnik.Rule()
@@ -54,7 +54,7 @@ def test_introspect_symbolizers():
 
     eq_(p2.allow_overlap, True)
     eq_(p2.opacity, 0.5)
-    eq_(p2.filename,'../data/images/dummy.png')
+    eq_(p2.filename,'../../test-data/images/dummy.png')
 
 if __name__ == "__main__":
     setup()

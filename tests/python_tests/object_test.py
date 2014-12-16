@@ -30,8 +30,8 @@
 #     eq_(s.premultiplied,True)
 
 # def test_line_pattern():
-#     s = mapnik.LinePatternSymbolizer(mapnik.PathExpression('../data/images/dummy.png'))
-#     eq_(s.filename, '../data/images/dummy.png')
+#     s = mapnik.LinePatternSymbolizer(mapnik.PathExpression('../../test-data/images/dummy.png'))
+#     eq_(s.filename, '../../test-data/images/dummy.png')
 #     eq_(s.smooth,0.0)
 #     eq_(s.transform,'')
 #     eq_(s.offset,0.0)
@@ -106,7 +106,7 @@
 #     eq_(ts.properties.horizontal_alignment, mapnik.horizontal_alignment.AUTO)
 
 # def test_shield_symbolizer_init():
-#     s = mapnik.ShieldSymbolizer(mapnik.Expression('[Field Name]'), 'DejaVu Sans Bold', 6, mapnik.Color('#000000'), mapnik.PathExpression('../data/images/dummy.png'))
+#     s = mapnik.ShieldSymbolizer(mapnik.Expression('[Field Name]'), 'DejaVu Sans Bold', 6, mapnik.Color('#000000'), mapnik.PathExpression('../../test-data/images/dummy.png'))
 #     eq_(s.comp_op,mapnik.CompositeOp.src_over)
 #     eq_(s.clip,True)
 #     eq_(s.displacement, (0.0,0.0))
@@ -149,7 +149,7 @@
 #     eq_(s.shield_displacement, (0.0,0.0))
 #     # TODO - the pattern in bindings seems to be to get/set
 #     # strings for PathExpressions... should we pass objects?
-#     eq_(s.filename, '../data/images/dummy.png')
+#     eq_(s.filename, '../../test-data/images/dummy.png')
 
 #     # 11c34b1: default transform list is empty, not identity matrix
 #     eq_(s.transform, '')
@@ -164,7 +164,7 @@
 # #    s = mapnik.ShieldSymbolizer(mapnik.Expression('[Field Name]'), 'DejaVu Sans Bold', 6, mapnik.Color('#000000'), mapnik.PathExpression('../#data/images/broken.png'))
 
 # def test_shield_symbolizer_modify():
-#     s = mapnik.ShieldSymbolizer(mapnik.Expression('[Field Name]'), 'DejaVu Sans Bold', 6, mapnik.Color('#000000'), mapnik.PathExpression('../data/images/dummy.png'))
+#     s = mapnik.ShieldSymbolizer(mapnik.Expression('[Field Name]'), 'DejaVu Sans Bold', 6, mapnik.Color('#000000'), mapnik.PathExpression('../../test-data/images/dummy.png'))
 #     # transform expression
 #     def check_transform(expr, expect_str=None):
 #         s.transform = expr
@@ -190,14 +190,14 @@
 #     eq_(p.comp_op,mapnik.CompositeOp.src_over)
 #     eq_(p.placement, mapnik.point_placement.CENTROID)
 
-#     p = mapnik.PointSymbolizer(mapnik.PathExpression("../data/images/dummy.png"))
+#     p = mapnik.PointSymbolizer(mapnik.PathExpression("../../test-data/images/dummy.png"))
 #     p.allow_overlap = True
 #     p.opacity = 0.5
 #     p.ignore_placement = True
 #     p.placement = mapnik.point_placement.INTERIOR
 #     eq_(p.allow_overlap, True)
 #     eq_(p.opacity, 0.5)
-#     eq_(p.filename,'../data/images/dummy.png')
+#     eq_(p.filename,'../../test-data/images/dummy.png')
 #     eq_(p.ignore_placement,True)
 #     eq_(p.placement, mapnik.point_placement.INTERIOR)
 
@@ -260,7 +260,7 @@
 # # so it does not make sense to throw...
 # #@raises(RuntimeError)
 # #def test_pointsymbolizer_missing_image():
-#  #   p = mapnik.PointSymbolizer(mapnik.PathExpression("../data/images/broken.png"))
+#  #   p = mapnik.PointSymbolizer(mapnik.PathExpression("../../test-data/images/broken.png"))
 
 # def test_polygon_symbolizer():
 #     p = mapnik.PolygonSymbolizer()

@@ -17,7 +17,7 @@ if 'sqlite' in mapnik.DatasourceCache.plugin_names():
     def test_layer_buffer_size_1():
         m = mapnik.Map(512,512)
         eq_(m.buffer_size,0)
-        mapnik.load_map(m,'../data/good_maps/layer_buffer_size_reduction.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/layer_buffer_size_reduction.xml')
         eq_(m.buffer_size,256)
         eq_(m.layers[0].buffer_size,-150)
         m.zoom_all()

@@ -14,7 +14,7 @@ if 'osm' in mapnik.DatasourceCache.plugin_names():
 
     # osm initialization
     def test_osm_init():
-        ds = mapnik.Osm(file='../data/osm/nodes.osm')
+        ds = mapnik.Osm(file='../../test-data/osm/nodes.osm')
 
         e = ds.envelope()
 
@@ -25,7 +25,7 @@ if 'osm' in mapnik.DatasourceCache.plugin_names():
         eq_(e.maxy <= 90,True)
 
     def test_that_nonexistant_query_field_throws(**kwargs):
-        ds = mapnik.Osm(file='../data/osm/nodes.osm')
+        ds = mapnik.Osm(file='../../test-data/osm/nodes.osm')
         eq_(len(ds.fields()),0)
         query = mapnik.Query(ds.envelope())
         for fld in ds.fields():
@@ -35,7 +35,7 @@ if 'osm' in mapnik.DatasourceCache.plugin_names():
         fs = ds.features(query)
 
     def test_that_64bit_int_fields_work():
-        ds = mapnik.Osm(file='../data/osm/64bit.osm')
+        ds = mapnik.Osm(file='../../test-data/osm/64bit.osm')
         eq_(len(ds.fields()),4)
         eq_(ds.fields(),['bigint', 'highway', 'junction', 'note'])
         eq_(ds.field_types(),['str', 'str', 'str', 'str'])

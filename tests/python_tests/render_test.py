@@ -106,10 +106,10 @@ def get_paired_images(w,h,mapfile):
 
 def test_render_from_serialization():
     try:
-        im,im2 = get_paired_images(100,100,'../data/good_maps/building_symbolizer.xml')
+        im,im2 = get_paired_images(100,100,'../../test-data/good_maps/building_symbolizer.xml')
         eq_(im.tostring('png32'),im2.tostring('png32'))
 
-        im,im2 = get_paired_images(100,100,'../data/good_maps/polygon_symbolizer.xml')
+        im,im2 = get_paired_images(100,100,'../../test-data/good_maps/polygon_symbolizer.xml')
         eq_(im.tostring('png32'),im2.tostring('png32'))
     except RuntimeError, e:
         # only test datasources that we have installed
@@ -221,7 +221,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     def test_render_with_scale_factor():
         m = mapnik.Map(256,256)
-        mapnik.load_map(m,'../data/good_maps/marker-text-line.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/marker-text-line.xml')
         m.zoom_all()
         sizes = [.00001,.005,.1,.899,1,1.5,2,5,10,100]
         for size in sizes:

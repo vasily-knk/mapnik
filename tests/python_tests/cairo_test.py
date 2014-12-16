@@ -152,7 +152,7 @@ if mapnik.has_pycairo():
                 test_cairo_file = '/tmp/mapnik-cairo-surface-test.%s.%s' % (sym,type)
                 expected_cairo_file = './images/pycairo/cairo-surface-expected.%s.%s' % (sym,type)
                 m = mapnik.Map(256,256)
-                mapnik.load_map(m,'../data/good_maps/%s_symbolizer.xml' % sym)
+                mapnik.load_map(m,'../../test-data/good_maps/%s_symbolizer.xml' % sym)
                 m.zoom_all()
                 if hasattr(cairo,'%sSurface' % type.upper()):
                     surface = getattr(cairo,'%sSurface' % type.upper())(test_cairo_file, m.width,m.height)

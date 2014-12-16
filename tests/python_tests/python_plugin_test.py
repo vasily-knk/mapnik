@@ -131,7 +131,7 @@
 
 #     def test_python_point_rendering():
 #         m = mapnik.Map(512,512)
-#         mapnik.load_map(m,'../data/python_plugin/python_point_datasource.xml')
+#         mapnik.load_map(m,'../../test-data/python_plugin/python_point_datasource.xml')
 #         m.zoom_all()
 #         im = mapnik.Image(512,512)
 #         mapnik.render(m,im)
@@ -144,7 +144,7 @@
 
 #     def test_python_circle_rendering():
 #         m = mapnik.Map(512,512)
-#         mapnik.load_map(m,'../data/python_plugin/python_circle_datasource.xml')
+#         mapnik.load_map(m,'../../test-data/python_plugin/python_circle_datasource.xml')
 #         m.zoom_all()
 #         im = mapnik.Image(512,512)
 #         mapnik.render(m,im)

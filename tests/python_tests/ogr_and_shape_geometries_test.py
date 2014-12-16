@@ -38,7 +38,7 @@ if 'shape' in plugins and 'ogr' in plugins:
             #eq_(feat1.geometries().to_wkb(mapnik.wkbByteOrder.XDR),feat2.geometries().to_wkb(mapnik.wkbByteOrder.XDR))
 
     def test_simple_polys():
-        ensure_geometries_are_interpreted_equivalently('../data/shp/wkt_poly.shp')
+        ensure_geometries_are_interpreted_equivalently('../../test-data/shp/wkt_poly.shp')
 
 if __name__ == "__main__":
     setup()

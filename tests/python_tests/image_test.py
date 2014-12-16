@@ -62,7 +62,7 @@ def test_png_round_trip():
     eq_(len(im.tostring('png8')),len(im2.tostring('png8')))
 
 def test_image_open_from_string():
-    filepath = '../data/images/dummy.png'
+    filepath = '../../test-data/images/dummy.png'
     im1 = mapnik.Image.open(filepath)
     im2 = mapnik.Image.fromstring(open(filepath,'rb').read())
     eq_(im1.width(),im2.width())

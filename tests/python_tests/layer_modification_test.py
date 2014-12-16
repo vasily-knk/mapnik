@@ -20,7 +20,7 @@ def test_adding_datasource_to_layer():
         <!-- leave datasource empty -->
         <!--
         <Datasource>
-            <Parameter name="file">../data/shp/world_merc.shp</Parameter>
+            <Parameter name="file">../../test-data/shp/world_merc.shp</Parameter>
             <Parameter name="type">shape</Parameter>
         </Datasource>
         -->
@@ -52,7 +52,7 @@ def test_adding_datasource_to_layer():
         eq_(lyr.srs,'+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs')
 
         # now add a datasource one...
-        ds = mapnik.Shapefile(file='../data/shp/world_merc.shp')
+        ds = mapnik.Shapefile(file='../../test-data/shp/world_merc.shp')
         m.layers[0].datasource = ds
 
         # now ensure it is attached

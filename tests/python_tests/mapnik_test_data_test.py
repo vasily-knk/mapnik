@@ -31,8 +31,8 @@ def test_opening_data():
     # https://github.com/mapbox/mapnik-test-data
     # cd tests/data
     # git clone --depth 1 https://github.com/mapbox/mapnik-test-data
-    if os.path.exists('../data/mapnik-test-data/'):
-        files = glob('../data/mapnik-test-data/data/*/*.*')
+    if os.path.exists('../../test-data/mapnik-test-data/'):
+        files = glob('../../test-data/mapnik-test-data/data/*/*.*')
         for filepath in files:
             ext = os.path.splitext(filepath)[1]
             if plugin_mapping.get(ext):

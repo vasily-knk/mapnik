@@ -207,7 +207,7 @@ if 'pgraster' in mapnik.DatasourceCache.plugin_names() \
       eq_(hexlify(im.view(255, 0,1,1).tostring()), '404040ff')
 
     def _test_dataraster_16bsi(lbl, tilesize, constraint, overview):
-      import_raster('../data/raster/dataraster-small.tif', 'dataRaster', tilesize, constraint, overview)
+      import_raster('../../test-data/raster/dataraster-small.tif', 'dataRaster', tilesize, constraint, overview)
       if constraint:
         lbl += ' C'
       if tilesize:
@@ -309,7 +309,7 @@ if 'pgraster' in mapnik.DatasourceCache.plugin_names() \
         'unexpected full transparent/opaque pixel: ' + alpha
 
     def _test_rgba_8bui(lbl, tilesize, constraint, overview):
-      import_raster('../data/raster/river.tiff', 'River', tilesize, constraint, overview)
+      import_raster('../../test-data/raster/river.tiff', 'River', tilesize, constraint, overview)
       if constraint:
         lbl += ' C'
       if tilesize:
@@ -408,7 +408,7 @@ if 'pgraster' in mapnik.DatasourceCache.plugin_names() \
 
     def _test_rgb_8bui(lbl, tilesize, constraint, overview):
       tnam = 'nodataedge'
-      import_raster('../data/raster/nodata-edge.tif', tnam, tilesize, constraint, overview)
+      import_raster('../../test-data/raster/nodata-edge.tif', tnam, tilesize, constraint, overview)
       if constraint:
         lbl += ' C'
       if tilesize:

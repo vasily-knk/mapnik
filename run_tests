@@ -6,7 +6,7 @@ source ./localize.sh
 PYTHON=${PYTHON:-python}
 
 echo "*** Running visual tests..."
-$PYTHON tests/visual_tests/test.py -q
+$PYTHON visual-tests/test.py -q
 failures=$((failures+$?))
 
 echo "*** Running C++ tests..."

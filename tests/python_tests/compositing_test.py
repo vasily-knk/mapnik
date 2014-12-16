@@ -152,7 +152,7 @@ def test_pre_multiply_status_of_map2():
 if 'shape' in mapnik.DatasourceCache.plugin_names():
     def test_style_level_comp_op():
         m = mapnik.Map(256, 256)
-        mapnik.load_map(m, '../data/good_maps/style_level_comp_op.xml')
+        mapnik.load_map(m, '../../test-data/good_maps/style_level_comp_op.xml')
         m.zoom_all()
         successes = []
         fails = []
@@ -182,7 +182,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     def test_style_level_opacity():
         m = mapnik.Map(512,512)
-        mapnik.load_map(m,'../data/good_maps/style_level_opacity_and_blur.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/style_level_opacity_and_blur.xml')
         m.zoom_all()
         im = mapnik.Image(512,512)
         mapnik.render(m,im)
@@ -204,7 +204,7 @@ def test_rounding_and_color_expectations():
     im = mapnik.Image(m.width,m.height)
     mapnik.render(m,im)
     eq_(get_unique_colors(im),['rgba(253,253,253,128)'])
-    im_file = mapnik.Image.open('../data/images/stripes_pattern.png')
+    im_file = mapnik.Image.open('../../test-data/images/stripes_pattern.png')
     eq_(get_unique_colors(im_file),['rgba(0,0,0,0)', 'rgba(74,74,74,255)'])
     # should have no effect
     im_file.premultiply()
@@ -221,7 +221,7 @@ def test_rounding_and_color_expectations():
 def test_background_image_and_background_color():
     m = mapnik.Map(8,8)
     m.background = mapnik.Color('rgba(255,255,255,.5)')
-    m.background_image = '../data/images/stripes_pattern.png'
+    m.background_image = '../../test-data/images/stripes_pattern.png'
     im = mapnik.Image(m.width,m.height)
     mapnik.render(m,im)
     # note: data loss due to rounding as per https://github.com/mapnik/mapnik/issues/1519
@@ -232,7 +232,7 @@ def test_background_image_and_background_color():
 def test_background_image_with_alpha_and_background_color():
     m = mapnik.Map(10,10)
     m.background = mapnik.Color('rgba(255,255,255,.5)')
-    m.background_image = '../data/images/yellow_half_trans.png'
+    m.background_image = '../../test-data/images/yellow_half_trans.png'
     im = mapnik.Image(m.width,m.height)
     mapnik.render(m,im)
     eq_(get_unique_colors(im),['rgba(255,255,85,191)'])
@@ -240,7 +240,7 @@ def test_background_image_with_alpha_and_background_color():
 def test_background_image_with_alpha_and_background_color_against_composited_control():
     m = mapnik.Map(10,10)
     m.background = mapnik.Color('rgba(255,255,255,.5)')
-    m.background_image = '../data/images/yellow_half_trans.png'
+    m.background_image = '../../test-data/images/yellow_half_trans.png'
     im = mapnik.Image(m.width,m.height)
     mapnik.render(m,im)
     # create and composite the expected result

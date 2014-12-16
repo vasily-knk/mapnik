@@ -17,10 +17,10 @@ expected_256 = '[Palette 256 colors #272727 #3c3c3c #484847 #564b41 #605243 #6a5
 expected_rgb = '[Palette 2 colors #ff00ff #ffffff]'
 
 def test_reading_palettes():
-    act = open('../data/palettes/palette64.act','rb')
+    act = open('../../test-data/palettes/palette64.act','rb')
     palette = mapnik.Palette(act.read(),'act')
     eq_(palette.to_string(),expected_64);
-    act = open('../data/palettes/palette256.act','rb')
+    act = open('../../test-data/palettes/palette256.act','rb')
     palette = mapnik.Palette(act.read(),'act')
     eq_(palette.to_string(),expected_256);
     palette = mapnik.Palette('\xff\x00\xff\xff\xff\xff', 'rgb')
@@ -30,11 +30,11 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     def test_render_with_palette():
         m = mapnik.Map(600,400)
-        mapnik.load_map(m,'../data/good_maps/agg_poly_gamma_map.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/agg_poly_gamma_map.xml')
         m.zoom_all()
         im = mapnik.Image(m.width,m.height)
         mapnik.render(m,im)
-        act = open('../data/palettes/palette256.act','rb')
+        act = open('../../test-data/palettes/palette256.act','rb')
         palette = mapnik.Palette(act.read(),'act')
         # test saving directly to filesystem
         im.save('/tmp/mapnik-palette-test.png','png',palette)

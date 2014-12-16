@@ -14,7 +14,7 @@ def test_multi_tile_policy():
     lyr = mapnik.Layer('raster')
     if 'raster' in mapnik.DatasourceCache.plugin_names():
         lyr.datasource = mapnik.Raster(
-            file = '../data/raster_tiles/${x}/${y}.tif',
+            file = '../../test-data/raster_tiles/${x}/${y}.tif',
             lox = -180,
             loy = -90,
             hix = 180,

@@ -16,7 +16,7 @@ def test_dataraster_coloring():
     lyr = mapnik.Layer('dataraster')
     if 'gdal' in mapnik.DatasourceCache.plugin_names():
         lyr.datasource = mapnik.Gdal(
-            file = '../data/raster/dataraster.tif',
+            file = '../../test-data/raster/dataraster.tif',
             band = 1,
             )
         lyr.srs = srs
@@ -66,7 +66,7 @@ def test_dataraster_query_point():
     lyr = mapnik.Layer('dataraster')
     if 'gdal' in mapnik.DatasourceCache.plugin_names():
         lyr.datasource = mapnik.Gdal(
-            file = '../data/raster/dataraster.tif',
+            file = '../../test-data/raster/dataraster.tif',
             band = 1,
             )
         lyr.srs = srs
@@ -94,21 +94,6 @@ def test_dataraster_query_point():
         features = _map.query_point(0,126850,4596050).features
         assert len(features) == 0
 
-def test_load_save_map():
-    map = mapnik.Map(256,256)
-    in_map = "../visual_tests/styles/raster_symbolizer.xml"
-    try:
-        mapnik.load_map(map, in_map)
-
-        out_map = mapnik.save_map_to_string(map)
-        assert 'RasterSymbolizer' in out_map
-        assert 'RasterColorizer' in out_map
-        assert 'stop' in out_map
-    except RuntimeError, e:
-        # only test datasources that we have installed
-        if not 'Could not create datasource' in str(e):
-            raise RuntimeError(str(e))
-
 def test_raster_with_alpha_blends_correctly_with_background():
     WIDTH = 500
     HEIGHT = 500
@@ -128,7 +113,7 @@ def test_raster_with_alpha_blends_correctly_with_background():
     map.append_style('raster_style', style)
 
     map_layer = mapnik.Layer('test_layer')
-    filepath = '../data/raster/white-alpha.png'
+    filepath = '../../test-data/raster/white-alpha.png'
     if 'gdal' in mapnik.DatasourceCache.plugin_names():
         map_layer.datasource = mapnik.Gdal(file=filepath)
         map_layer.styles.append('raster_style')
@@ -149,7 +134,7 @@ def test_raster_warping():
     lyr = mapnik.Layer('dataraster', lyrSrs)
     if 'gdal' in mapnik.DatasourceCache.plugin_names():
         lyr.datasource = mapnik.Gdal(
-            file = '../data/raster/dataraster.tif',
+            file = '../../test-data/raster/dataraster.tif',
             band = 1,
             )
         sym = mapnik.RasterSymbolizer()
@@ -185,7 +170,7 @@ def test_raster_warping_does_not_overclip_source():
     lyr = mapnik.Layer('dataraster', lyrSrs)
     if 'gdal' in mapnik.DatasourceCache.plugin_names():
         lyr.datasource = mapnik.Gdal(
-            file = '../data/raster/dataraster.tif',
+            file = '../../test-data/raster/dataraster.tif',
             band = 1,
             )
         sym = mapnik.RasterSymbolizer()

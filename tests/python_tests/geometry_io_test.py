@@ -312,7 +312,7 @@ def test_wkt_collection_flattening():
 #    ogr2ogr -F CSV -lco GEOMETRY=AS_WKT 10m-land.csv 10m_land.shp
 #    mv 10m-land.csv tests/data/csv/
 #    '''
-#    lines = open('../data/csv/10m-land.csv').readlines()
+#    lines = open('../../test-data/csv/10m-land.csv').readlines()
 #    for line in lines:
 #        wkt = lines[1][lines[1].index('"',0)+1:lines[1].index('"',1)]
 #        wkt = wkt.replace(' (','(',1)

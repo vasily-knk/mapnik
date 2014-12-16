@@ -13,7 +13,7 @@ def setup():
 if 'geojson' in mapnik.DatasourceCache.plugin_names():
 
     def test_geojson_init():
-        ds = mapnik.Datasource(type='geojson',file='../data/json/escaped.geojson')
+        ds = mapnik.Datasource(type='geojson',file='../../test-data/json/escaped.geojson')
         e = ds.envelope()
         assert_almost_equal(e.minx, -81.705583, places=7)
         assert_almost_equal(e.miny, 41.480573, places=6)
@@ -21,7 +21,7 @@ if 'geojson' in mapnik.DatasourceCache.plugin_names():
         assert_almost_equal(e.maxy, 41.480573, places=3)
 
     def test_geojson_properties():
-        ds = mapnik.Datasource(type='geojson',file='../data/json/escaped.geojson')
+        ds = mapnik.Datasource(type='geojson',file='../../test-data/json/escaped.geojson')
         f = ds.features_at_point(ds.envelope().center()).features[0]
         eq_(len(ds.fields()),7)
         desc = ds.describe()
@@ -36,7 +36,7 @@ if 'geojson' in mapnik.DatasourceCache.plugin_names():
         eq_(f['NOM_FR'], u'Qu\xe9bec')
         eq_(f['NOM_FR'], u'Québec')
 
-        ds = mapnik.Datasource(type='geojson',file='../data/json/escaped.geojson')
+        ds = mapnik.Datasource(type='geojson',file='../../test-data/json/escaped.geojson')
         f = ds.all_features()[0]
         eq_(len(ds.fields()),7)
 
@@ -65,7 +65,7 @@ if 'geojson' in mapnik.DatasourceCache.plugin_names():
 
 #    @raises(RuntimeError)
     def test_that_nonexistant_query_field_throws(**kwargs):
-        ds = mapnik.Datasource(type='geojson',file='../data/json/escaped.geojson')
+        ds = mapnik.Datasource(type='geojson',file='../../test-data/json/escaped.geojson')
         eq_(len(ds.fields()),7)
         # TODO - this sorting is messed up
         #eq_(ds.fields(),['name', 'int', 'double', 'description', 'boolean', 'NOM_FR'])
@@ -79,7 +79,7 @@ if 'geojson' in mapnik.DatasourceCache.plugin_names():
 #        fs = ds.features(query)
 
     def test_parsing_feature_collection_with_top_level_properties():
-        ds = mapnik.Datasource(type='geojson',file='../data/json/feature_collection_level_properties.json')
+        ds = mapnik.Datasource(type='geojson',file='../../test-data/json/feature_collection_level_properties.json')
         f = ds.all_features()[0]
 
         desc = ds.describe()

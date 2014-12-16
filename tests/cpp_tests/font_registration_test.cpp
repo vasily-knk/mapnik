@@ -96,12 +96,12 @@ int main(int argc, char** argv)
         BOOST_TEST( mapnik::freetype_engine::face_names().size() == 0 );
 
         // bogus, emtpy file that looks like font
-        BOOST_TEST( mapnik::freetype_engine::register_font("tests/data/fonts/fake.ttf") == false );
-        BOOST_TEST( mapnik::freetype_engine::register_fonts("tests/data/fonts/fake.ttf") == false );
+        BOOST_TEST( mapnik::freetype_engine::register_font("test-data/fonts/fake.ttf") == false );
+        BOOST_TEST( mapnik::freetype_engine::register_fonts("test-data/fonts/fake.ttf") == false );
         BOOST_TEST( mapnik::freetype_engine::face_names().size() == 0 );
 
-        BOOST_TEST( mapnik::freetype_engine::register_font("tests/data/fonts/intentionally-broken.ttf") == false );
-        BOOST_TEST( mapnik::freetype_engine::register_fonts("tests/data/fonts/intentionally-broken.ttf") == false );
+        BOOST_TEST( mapnik::freetype_engine::register_font("test-data/fonts/intentionally-broken.ttf") == false );
+        BOOST_TEST( mapnik::freetype_engine::register_fonts("test-data/fonts/intentionally-broken.ttf") == false );
         BOOST_TEST( mapnik::freetype_engine::face_names().size() == 0 );
 
         // now restore the original severity
@@ -119,7 +119,7 @@ int main(int argc, char** argv)
         BOOST_TEST( face_names.size() == 1 );
 
         // single dejavu font in separate location
-        std::string dejavu_bold_oblique("tests/data/fonts/DejaVuSansMono-BoldOblique.ttf");
+        std::string dejavu_bold_oblique("test-data/fonts/DejaVuSansMono-BoldOblique.ttf");
         BOOST_TEST( mapnik::freetype_engine::register_font(dejavu_bold_oblique) );
         face_names = mapnik::freetype_engine::face_names();
         BOOST_TEST( face_names.size() == 2 );
@@ -174,7 +174,7 @@ int main(int argc, char** argv)
         // check that we can correctly read a .ttc containing
         // multiple valid faces
         // https://github.com/mapnik/mapnik/issues/2274
-        BOOST_TEST( mapnik::freetype_engine::register_font("tests/data/fonts/NotoSans-Regular.ttc") );
+        BOOST_TEST( mapnik::freetype_engine::register_font("test-data/fonts/NotoSans-Regular.ttc") );
         face_names = mapnik::freetype_engine::face_names();
         BOOST_TEST( face_names.size() == 24 );
 

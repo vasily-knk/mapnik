@@ -14,12 +14,12 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
     #@raises(RuntimeError)
     def test_zoom_all_will_fail():
         m = mapnik.Map(512,512)
-        mapnik.load_map(m,'../data/good_maps/wgs842merc_reprojection.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/wgs842merc_reprojection.xml')
         m.zoom_all()
 
     def test_zoom_all_will_work_with_max_extent():
         m = mapnik.Map(512,512)
-        mapnik.load_map(m,'../data/good_maps/wgs842merc_reprojection.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/wgs842merc_reprojection.xml')
         merc_bounds = mapnik.Box2d(-20037508.34,-20037508.34,20037508.34,20037508.34)
         m.maximum_extent = merc_bounds
         m.zoom_all()
@@ -28,7 +28,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
         #eq_(m.envelope(),merc_bounds)
 
         #m = mapnik.Map(512,512)
-        #mapnik.load_map(m,'../data/good_maps/wgs842merc_reprojection.xml')
+        #mapnik.load_map(m,'../../test-data/good_maps/wgs842merc_reprojection.xml')
         #merc_bounds = mapnik.Box2d(-20037508.34,-20037508.34,20037508.34,20037508.34)
         #m.zoom_to_box(merc_bounds)
         #eq_(m.envelope(),merc_bounds)
@@ -36,7 +36,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     def test_visual_zoom_all_rendering1():
         m = mapnik.Map(512,512)
-        mapnik.load_map(m,'../data/good_maps/wgs842merc_reprojection.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/wgs842merc_reprojection.xml')
         merc_bounds = mapnik.Box2d(-20037508.34,-20037508.34,20037508.34,20037508.34)
         m.maximum_extent = merc_bounds
         m.zoom_all()
@@ -50,7 +50,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     def test_visual_zoom_all_rendering2():
         m = mapnik.Map(512,512)
-        mapnik.load_map(m,'../data/good_maps/merc2wgs84_reprojection.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/merc2wgs84_reprojection.xml')
         m.zoom_all()
         im = mapnik.Image(512,512)
         mapnik.render(m,im)
@@ -63,7 +63,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
     # maximum-extent read from map.xml
     def test_visual_zoom_all_rendering3():
         m = mapnik.Map(512,512)
-        mapnik.load_map(m,'../data/good_maps/bounds_clipping.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/bounds_clipping.xml')
         m.zoom_all()
         im = mapnik.Image(512,512)
         mapnik.render(m,im)
@@ -76,7 +76,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
     # no maximum-extent
     def test_visual_zoom_all_rendering4():
         m = mapnik.Map(512,512)
-        mapnik.load_map(m,'../data/good_maps/bounds_clipping.xml')
+        mapnik.load_map(m,'../../test-data/good_maps/bounds_clipping.xml')
         m.maximum_extent = None
         m.zoom_all()
         im = mapnik.Image(512,512)

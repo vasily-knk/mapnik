@@ -5,7 +5,7 @@ import mapnik
 from nose.tools import *
 from utilities import execution_path, run_all
 
-datadir = '../data/pngsuite'
+datadir = '../../test-data/pngsuite'
 
 def setup():
     # All of the paths used are relative, if we run the tests

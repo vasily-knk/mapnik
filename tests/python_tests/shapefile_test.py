@@ -40,7 +40,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     @raises(RuntimeError)
     def test_that_nonexistant_query_field_throws(**kwargs):
-        ds = mapnik.Shapefile(file='../data/shp/world_merc')
+        ds = mapnik.Shapefile(file='../../test-data/shp/world_merc')
         eq_(len(ds.fields()),11)
         eq_(ds.fields(),['FIPS', 'ISO2', 'ISO3', 'UN', 'NAME', 'AREA', 'POP2005', 'REGION', 'SUBREGION', 'LON', 'LAT'])
         eq_(ds.field_types(),['str', 'str', 'str', 'int', 'str', 'int', 'int', 'int', 'int', 'float', 'float'])
@@ -52,7 +52,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
         fs = ds.features(query)
 
     def test_dbf_logical_field_is_boolean():
-        ds = mapnik.Shapefile(file='../data/shp/long_lat')
+        ds = mapnik.Shapefile(file='../../test-data/shp/long_lat')
         eq_(len(ds.fields()),7)
         eq_(ds.fields(),['LONG', 'LAT', 'LOGICAL_TR', 'LOGICAL_FA', 'CHARACTER', 'NUMERIC', 'DATE'])
         eq_(ds.field_types(),['str', 'str', 'bool', 'bool', 'str', 'float', 'str'])
@@ -71,7 +71,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     # created by hand in qgis 1.8.0
     def test_shapefile_point2d_from_qgis():
-        ds = mapnik.Shapefile(file='../data/shp/points/qgis.shp')
+        ds = mapnik.Shapefile(file='../../test-data/shp/points/qgis.shp')
         eq_(len(ds.fields()),2)
         eq_(ds.fields(),['id','name'])
         eq_(ds.field_types(),['int','str'])
@@ -79,14 +79,14 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     # ogr2ogr tests/data/shp/3dpoint/ogr_zfield.shp tests/data/shp/3dpoint/qgis.shp -zfield id
     def test_shapefile_point_z_from_qgis():
-        ds = mapnik.Shapefile(file='../data/shp/points/ogr_zfield.shp')
+        ds = mapnik.Shapefile(file='../../test-data/shp/points/ogr_zfield.shp')
         eq_(len(ds.fields()),2)
         eq_(ds.fields(),['id','name'])
         eq_(ds.field_types(),['int','str'])
         eq_(len(ds.all_features()),3)
 
     def test_shapefile_multipoint_from_qgis():
-        ds = mapnik.Shapefile(file='../data/shp/points/qgis_multi.shp')
+        ds = mapnik.Shapefile(file='../../test-data/shp/points/qgis_multi.shp')
         eq_(len(ds.fields()),2)
         eq_(ds.fields(),['id','name'])
         eq_(ds.field_types(),['int','str'])
@@ -94,7 +94,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     # pointzm from arcinfo
     def test_shapefile_point_zm_from_arcgis():
-        ds = mapnik.Shapefile(file='../data/shp/points/poi.shp')
+        ds = mapnik.Shapefile(file='../../test-data/shp/points/poi.shp')
         eq_(len(ds.fields()),7)
         eq_(ds.fields(),['interst_id', 'state_d', 'cnty_name', 'latitude', 'longitude', 'Name', 'Website'])
         eq_(ds.field_types(),['str', 'str', 'str', 'float', 'float', 'str', 'str'])
@@ -102,7 +102,7 @@ if 'shape' in mapnik.DatasourceCache.plugin_names():
 
     # copy of the above with ogr2ogr that makes m record 14 instead of 18
     def test_shapefile_point_zm_from_ogr():
-        ds = mapnik.Shapefile(file='../data/shp/points/poi_ogr.shp')
+        ds = mapnik.Shapefile(file='../../test-data/shp/points/poi_ogr.shp')
         eq_(len(ds.fields()),7)
         eq_(ds.fields(),['interst_id', 'state_d', 'cnty_name', 'latitude', 'longitude', 'Name', 'Website'])
         eq_(ds.field_types(),['str', 'str', 'str', 'float', 'float', 'str', 'str'])

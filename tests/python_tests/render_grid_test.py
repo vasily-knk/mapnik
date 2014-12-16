@@ -38,7 +38,7 @@ if mapnik.has_grid_renderer():
         return val
     
     def show_grids2(name,g1,g2):
-        g2_expected = '../data/grids/mapnik-%s-actual.json' % name
+        g2_expected = '../../test-data/grids/mapnik-%s-actual.json' % name
         if not os.path.exists(g2_expected):
             # create test fixture based on actual results
             open(g2_expected,'a+').write(json.dumps(g1,sort_keys=True))
@@ -296,7 +296,7 @@ if mapnik.has_grid_renderer():
     def test_point_symbolizer_grid():
         width,height = 256,256
         sym = mapnik.PointSymbolizer()
-        sym.file = '../data/images/dummy.png'
+        sym.file = '../../test-data/images/dummy.png'
         m = create_grid_map(width,height,sym)
         ul_lonlat = mapnik.Coord(142.30,-38.20)
         lr_lonlat = mapnik.Coord(143.40,-38.80)

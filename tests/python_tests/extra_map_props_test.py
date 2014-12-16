@@ -12,7 +12,7 @@ def setup():
 
 def test_arbitrary_parameters_attached_to_map():
     m = mapnik.Map(256,256)
-    mapnik.load_map(m,'../data/good_maps/extra_arbitary_map_parameters.xml')
+    mapnik.load_map(m,'../../test-data/good_maps/extra_arbitary_map_parameters.xml')
     eq_(len(m.parameters),5)
     eq_(m.parameters['key'],'value2')
     eq_(m.parameters['key3'],'value3')

@@ -12,7 +12,7 @@ import threading
 
 MAPNIK_TEST_DBNAME = 'mapnik-tmp-postgis-test-db'
 POSTGIS_TEMPLATE_DBNAME = 'template_postgis'
-SHAPEFILE = os.path.join(execution_path('.'),'../data/shp/world_merc.shp')
+SHAPEFILE = os.path.join(execution_path('.'),'../../test-data/shp/world_merc.shp')
 
 def setup():
     # All of the paths used are relative, if we run the tests

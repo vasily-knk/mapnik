@@ -53,7 +53,7 @@ int main(int argc, char** argv)
             BOOST_TEST( true );
         }
 
-        should_throw = "./tests/data/images/xcode-CgBI.png";
+        should_throw = "./test-data/images/xcode-CgBI.png";
         BOOST_TEST( mapnik::util::exists( should_throw ) );
         type = mapnik::type_from_filename(should_throw);
         BOOST_TEST( type );

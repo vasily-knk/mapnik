@@ -21,9 +21,9 @@ def teardown():
 def test_broken_files():
     default_logging_severity = mapnik.logger.get_severity()
     mapnik.logger.set_severity(mapnik.severity_type.None)
-    broken_files = glob.glob("../data/broken_maps/*.xml")
+    broken_files = glob.glob("../../test-data/broken_maps/*.xml")
     # Add a filename that doesn't exist 
-    broken_files.append("../data/broken/does_not_exist.xml")
+    broken_files.append("../../test-data/broken/does_not_exist.xml")
 
     failures = [];
     for filename in broken_files:
@@ -38,7 +38,7 @@ def test_broken_files():
     mapnik.logger.set_severity(default_logging_severity)
 
 def test_good_files():
-    good_files = glob.glob("../data/good_maps/*.xml")
+    good_files = glob.glob("../../test-data/good_maps/*.xml")
     good_files.extend(glob.glob("../visual_tests/styles/*.xml"))
 
     failures = [];

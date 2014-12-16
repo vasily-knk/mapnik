@@ -38,7 +38,9 @@ struct create_point : util::static_visitor<>
 
     void operator()(position const& pos) const
     {
+        path_.reserve(path_.size() + 1);
         auto pt = std::make_unique<geometry_type>(geometry_type::types::Point);
+        pt->reserve(1);
         pt->move_to(std::get<0>(pos), std::get<1>(pos));
         path_.push_back(pt.release());
     }
@@ -59,9 +61,10 @@ struct create_linestring : util::static_visitor<>
         std::size_t size = ring.size();
         if (size > 1)
         {
+            path_.reserve(path_.size()+1);
             auto line = std::make_unique<geometry_type>(geometry_type::types::LineString);
+            line->reserve(size);
             line->move_to(std::get<0>(ring.front()), std::get<1>(ring.front()));
-
             for (std::size_t index = 1; index < size; ++index)
             {
                 line->line_to(std::get<0>(ring[index]), std::get<1>(ring[index]));
@@ -84,22 +87,33 @@ struct create_polygon : util::static_visitor<>
 
     void operator()(std::vector<positions> const& rings) const
     {
-        auto poly = std::make_unique<geometry_type>(geometry_type::types::Polygon);
-
-        for (auto const& ring : rings)
+        if (!rings.empty())
         {
-            std::size_t size = ring.size();
-            if (size > 2) // at least 3 vertices to form a ring
+            path_.reserve(path_.size() + 1);
+            auto poly = std::make_unique<geometry_type>(geometry_type::types::Polygon);
+            /*std::size_t num_vertices = 0;
+            for (auto const& ring : rings)
             {
-                poly->move_to(std::get<0>(ring.front()), std::get<1>(ring.front()));
-                for (std::size_t index = 1; index < size; ++index)
-                {
-                    poly->line_to(std::get<0>(ring[index]), std::get<1>(ring[index]));
-                }
-                poly->close_path();
+                std::size_t size = ring.size();
+                num_vertices += (size *)
             }
+            poly->reserve(num_vertices);
+            */
+            for (auto const& ring : rings)
+            {
+                std::size_t size = ring.size();
+                if (size > 2) // at least 3 vertices to form a ring
+                {
+                    poly->move_to(std::get<0>(ring.front()), std::get<1>(ring.front()));
+                    for (std::size_t index = 1; index < size; ++index)
+                    {
+                        poly->line_to(std::get<0>(ring[index]), std::get<1>(ring[index]));
+                    }
+                    poly->close_path();
+                }
+            }
+            path_.push_back(poly.release());
         }
-        path_.push_back(poly.release());
     }
 
     template <typename T>
@@ -118,11 +132,16 @@ struct create_multipoint : util::static_visitor<>
 
     void operator()(positions const& points) const
     {
-        for (auto const& pos : points)
+        if (!points.empty())
         {
-            auto point = std::make_unique<geometry_type>(geometry_type::types::Point);
-            point->move_to(std::get<0>(pos), std::get<1>(pos));
-            path_.push_back(point.release());
+            path_.reserve(path_.size() + points.size());
+            for (auto const& pos : points)
+            {
+                auto point = std::make_unique<geometry_type>(geometry_type::types::Point);
+                point->reserve(1);
+                point->move_to(std::get<0>(pos), std::get<1>(pos));
+                path_.push_back(point.release());
+            }
         }
     }
 
@@ -140,10 +159,12 @@ struct create_multilinestring : util::static_visitor<>
 
     void operator()(std::vector<positions> const& rings) const
     {
+        path_.reserve(path_.size() + rings.size());
         for (auto const& ring : rings)
         {
             auto line = std::make_unique<geometry_type>(geometry_type::types::LineString);
             std::size_t size = ring.size();
+            line->reserve(size);
             if (size > 1) // at least 2 vertices to form a linestring
             {
                 line->move_to(std::get<0>(ring.front()), std::get<1>(ring.front()));
@@ -170,9 +191,12 @@ struct create_multipolygon : util::static_visitor<>
 
     void operator()(std::vector<std::vector<positions> > const& rings_array) const
     {
+        path_.reserve(path_.size() + rings_array.size());
         for (auto const& rings : rings_array)
         {
             auto poly = std::make_unique<geometry_type>(geometry_type::types::Polygon);
+            // TODO - fix
+            //poly->reserve(rings.size());
             for (auto const& ring : rings)
             {
                 std::size_t size = ring.size();

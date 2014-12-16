@@ -65,6 +65,21 @@ public:
           itr_(0)
     {}
 
+    void reserve(std::size_t size)
+    {
+        cont_.reserve(size);
+    }
+
+    void resize(std::size_t size)
+    {
+        cont_.resize(size);
+    }
+
+    void shrink_to_fit()
+    {
+        cont_.shrink_to_fit();
+    }
+
     types type() const
     {
         return static_cast<types>(type_ & types::Polygon);
@@ -88,6 +103,11 @@ public:
     size_type size() const
     {
         return cont_.size();
+    }
+
+    size_type capacity() const
+    {
+        return cont_.capacity();
     }
 
     box2d<double> envelope() const

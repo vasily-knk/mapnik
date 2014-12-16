@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -45,7 +45,8 @@ image_32::image_32(int width,int height)
      painted_(false),
      premultiplied_(false) {}
 
-image_32::image_32(const image_32& rhs)
+
+image_32::image_32(image_32 const& rhs)
     :width_(rhs.width_),
      height_(rhs.height_),
      data_(rhs.data_),

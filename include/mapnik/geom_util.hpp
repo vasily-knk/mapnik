@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -247,7 +247,7 @@ double path_length(PathType & path)
 }
 
 template <typename PathType>
-bool hit_test_first(PathType & path, double x, double y, double tol)
+bool hit_test_first(PathType & path, double x, double y)
 {
     bool inside=false;
     double x0 = 0;

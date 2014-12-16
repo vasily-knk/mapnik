@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,10 +22,15 @@
 
 #include <mapnik/config.hpp>
 
-#include "boost_std_shared_shim.hpp"
-
 // boost
+#include "boost_std_shared_shim.hpp"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
+
 #include <boost/python.hpp>
+#pragma GCC diagnostic pop
 
 // mapnik
 #include <mapnik/debug.hpp>
@@ -157,6 +162,11 @@ mapnik::parameter get_params_by_index(mapnik::parameters const& p, int index)
     throw boost::python::error_already_set();
 }
 
+unsigned get_params_size(mapnik::parameters const& p)
+{
+    return p.size();
+}
+
 void add_parameter(mapnik::parameters & p, mapnik::parameter const& param)
 {
     p[param.first] = param.second;
@@ -184,6 +194,12 @@ std::shared_ptr<mapnik::parameter> create_parameter(mapnik::value_unicode_string
     std::string key_utf8;
     mapnik::to_utf8(key, key_utf8);
     return std::make_shared<mapnik::parameter>(key_utf8,value);
+}
+
+bool contains(mapnik::parameters const& p, std::string const& key)
+{
+    parameters::const_iterator pos = p.find(key);
+    return pos != p.end();
 }
 
 // needed for Python_Unicode to std::string (utf8) conversion
@@ -222,7 +238,8 @@ void export_parameters()
         .def("get",get_params_by_key1)
         .def("__getitem__",get_params_by_key2)
         .def("__getitem__",get_params_by_index)
-        .def("__len__",&parameters::size)
+        .def("__len__",get_params_size)
+        .def("__contains__",contains)
         .def("append",add_parameter)
         .def("iteritems",iterator<parameters>())
         ;

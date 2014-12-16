@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -34,7 +34,7 @@ namespace mapnik
  */
 template <typename T>
 void svg_renderer<T>::process(polygon_symbolizer const& sym,
-                              mapnik::feature_impl & feature,
+                              mapnik::feature_impl &,
                               proj_transform const& prj_trans)
 {
     path_attributes_.set_fill_color(get<mapnik::color>(sym, keys::fill, mapnik::color(128,128,128)));

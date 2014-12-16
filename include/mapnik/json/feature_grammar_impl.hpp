@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2012 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -104,7 +104,7 @@ feature_grammar<Iterator,FeatureType,ErrorHandler>::feature_grammar(mapnik::tran
         ;
 
     properties = lit("\"properties\"")
-        > lit(':') > (lit('{') > -attributes(_r1) > lit('}')) | lit("null")
+        > lit(':') > ((lit('{') > -attributes(_r1) > lit('}')) | lit("null"))
         ;
 
     attributes = (json_.string_ [_a = _1] > lit(':') > attribute_value [put_property_(_r1,_a,_1)]) % lit(',')

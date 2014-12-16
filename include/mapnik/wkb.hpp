@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -42,7 +42,7 @@ namespace mapnik
  * the Open Geospatial Consortium (OGC) and described in their Simple Feature
  * Access and Coordinate Transformation Service specifications.
  */
-enum wkbFormat
+enum wkbFormat : std::uint8_t
 {
     wkbAuto=1,
     wkbGeneric=2,

@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2009 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,17 +21,24 @@
  *****************************************************************************/
 
 #include <mapnik/config.hpp>
+
+
+// boost
 #include "boost_std_shared_shim.hpp"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
+
+#include <boost/python.hpp>
+#include <boost/noncopyable.hpp>
+#pragma GCC diagnostic pop
 
 // mapnik
 #include <mapnik/proj_transform.hpp>
 #include <mapnik/projection.hpp>
 #include <mapnik/coord.hpp>
 #include <mapnik/box2d.hpp>
-
-// boost
-#include <boost/noncopyable.hpp>
-#include <boost/python.hpp>
 
 // stl
 #include <stdexcept>

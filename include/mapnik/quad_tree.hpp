@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,11 +28,15 @@
 #include <mapnik/noncopyable.hpp>
 
 // boost
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
 #include <boost/ptr_container/ptr_vector.hpp>
+#pragma GCC diagnostic pop
 
 // stl
+#include <algorithm>
 #include <vector>
-#include <cstring>
 
 namespace mapnik
 {
@@ -52,7 +56,7 @@ class quad_tree : mapnik::noncopyable
         explicit node(box2d<double> const& ext)
             : extent_(ext)
         {
-            std::memset(children_,0,4*sizeof(node*));
+            std::fill(children_, children_ + 4, nullptr);
         }
 
         box2d<double> const& extent() const

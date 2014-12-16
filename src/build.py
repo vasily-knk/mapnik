@@ -204,8 +204,8 @@ source = Split(
     svg/svg_transform_parser.cpp
     warp.cpp
     css_color_grammar.cpp
+    vertex_cache.cpp
     text/font_library.cpp
-    text/vertex_cache.cpp
     text/text_layout.cpp
     text/text_line.cpp
     text/itemizer.cpp
@@ -243,6 +243,7 @@ source = Split(
 
 if env['PLUGIN_LINKING'] == 'static':
     hit = False
+    lib_env.AppendUnique(CPPPATH='../plugins/')
     for plugin in env['REQUESTED_PLUGINS']:
         details = env['PLUGINS'][plugin]
         if details['lib'] in env['LIBS'] or not details['lib']:
@@ -355,17 +356,8 @@ if env['SVG_RENDERER']: # svg backend
     svg/output/svg_generator.cpp
     svg/output/svg_output_attributes.cpp
     svg/output/process_symbolizers.cpp
-    svg/output/process_building_symbolizer.cpp
-    svg/output/process_line_pattern_symbolizer.cpp
     svg/output/process_line_symbolizer.cpp
-    svg/output/process_markers_symbolizer.cpp
-    svg/output/process_point_symbolizer.cpp
-    svg/output/process_polygon_pattern_symbolizer.cpp
     svg/output/process_polygon_symbolizer.cpp
-    svg/output/process_raster_symbolizer.cpp
-    svg/output/process_shield_symbolizer.cpp
-    svg/output/process_text_symbolizer.cpp
-    svg/output/process_group_symbolizer.cpp
     """)
     lib_env.Append(CPPDEFINES = '-DSVG_RENDERER')
     libmapnik_defines.append('-DSVG_RENDERER')

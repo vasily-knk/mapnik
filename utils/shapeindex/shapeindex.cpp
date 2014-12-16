@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2006 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -25,12 +25,17 @@
 #include <vector>
 #include <string>
 #include <mapnik/util/fs.hpp>
-#include <boost/tokenizer.hpp>
-#include <boost/algorithm/string.hpp>
-#include <boost/program_options.hpp>
 #include "quadtree.hpp"
 #include "shapefile.hpp"
 #include "shape_io.hpp"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
+#include <boost/tokenizer.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/program_options.hpp>
+#pragma GCC diagnostic pop
 
 const int DEFAULT_DEPTH = 8;
 const double DEFAULT_RATIO=0.55;
@@ -234,4 +239,3 @@ int main (int argc,char** argv)
     clog << "done!" << endl;
     return 0;
 }
-

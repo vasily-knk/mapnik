@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2013 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -321,7 +321,6 @@ public:
     void glyph_path(unsigned long index, pixel_position const& pos);
     void add_text(glyph_positions const& pos,
                   cairo_face_manager & manager,
-                  face_manager_freetype & font_manager,
                   composite_mode_e comp_op = src_over,
                   composite_mode_e halo_comp_op = src_over,
                   double scale_factor = 1.0);

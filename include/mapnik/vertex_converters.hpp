@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2012 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -310,7 +310,7 @@ template <typename Dispatcher>
 struct converters_helper<Dispatcher>
 {
     template <typename Converter>
-    static void set(Dispatcher & disp, int state) {}
+    static void set(Dispatcher &, int) {}
     template <typename Geometry>
     static void forward(Dispatcher & disp, Geometry & geom)
     {

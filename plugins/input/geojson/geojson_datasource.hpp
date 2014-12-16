@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2012 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -35,8 +35,10 @@
 
 // boost
 #include <boost/optional.hpp>
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-variable"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/box.hpp>
 #include <boost/geometry/geometries/geometries.hpp>
@@ -47,7 +49,7 @@
 #else
 #include <boost/geometry/extensions/index/rtree/rtree.hpp>
 #endif
-#pragma clang diagnostic pop
+#pragma GCC diagnostic pop
 
 // stl
 #include <memory>
@@ -71,7 +73,12 @@ struct options_type<geojson_linear<Max,Min> >
                          choose_by_content_diff_tag,
                          split_default_tag,
                          linear_tag,
+#if BOOST_VERSION >= 105700
+                         node_variant_static_tag>;
+#else
                          node_s_mem_static_tag>;
+
+#endif
 };
 
 }}}}}

@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2013 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -146,6 +146,8 @@ inline std::string symbolizer_name(symbolizer const& sym)
     return type;
 }
 
+// https://github.com/mapnik/mapnik/issues/2324
+/*
 
 template <typename Meta>
 class symbolizer_property_value_string : public util::static_visitor<std::string>
@@ -200,7 +202,7 @@ public:
         std::ostringstream ss;
         if (expr)
         {
-            ss << '\"' << "FIXME" /*mapnik::to_expression_string(*expr)*/ <<  '\"';
+            ss << '\"' << "FIXME" <<  '\"';
         }
         return ss.str();
     }
@@ -259,12 +261,14 @@ struct symbolizer_to_json : public util::static_visitor<std::string>
     }
 };
 
+*/
+
 namespace {
 
 template <typename Symbolizer, typename T>
 struct set_property_impl
 {
-    static void apply(Symbolizer & sym, mapnik::keys key, std::string const& val)
+    static void apply(Symbolizer &, mapnik::keys, std::string const&)
     {
         std::cerr << "do nothing" << std::endl;
     }
@@ -282,7 +286,7 @@ struct set_property_impl<Symbolizer, std::integral_constant<property_types, prop
 template <typename Symbolizer>
 struct set_property_impl<Symbolizer, std::integral_constant<property_types, property_types::target_double> >
 {
-    static void apply(Symbolizer & sym, mapnik::keys key, std::string const& val)
+    static void apply(Symbolizer &, mapnik::keys, std::string const&)
     {
         std::cerr << " expects double" << std::endl;
     }
@@ -291,7 +295,7 @@ struct set_property_impl<Symbolizer, std::integral_constant<property_types, prop
 template <typename Symbolizer>
 struct set_property_impl<Symbolizer, std::integral_constant<property_types, property_types::target_bool> >
 {
-    static void apply(Symbolizer & sym, mapnik::keys key, std::string const& val)
+    static void apply(Symbolizer &, mapnik::keys, std::string const&)
     {
         std::cerr << " expects bool" << std::endl;
     }

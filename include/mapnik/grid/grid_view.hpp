@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -196,7 +196,7 @@ private:
     feature_type const& features_;
 };
 
-using grid_view = hit_grid_view<mapnik::ImageData<mapnik::value_integer> >;
+using grid_view = hit_grid_view<mapnik::image_data<mapnik::value_integer> >;
 
 }
 

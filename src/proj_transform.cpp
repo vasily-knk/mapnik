@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -45,6 +45,7 @@ proj_transform::proj_transform(projection const& source,
       dest_(dest),
       is_source_longlat_(false),
       is_dest_longlat_(false),
+      is_source_equal_dest_(false),
       wgs84_to_merc_(false),
       merc_to_wgs84_(false)
 {

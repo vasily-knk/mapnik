@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -61,11 +61,14 @@
 
 // boost
 #include <boost/optional.hpp>
-#include <boost/algorithm/string.hpp>
 #include <boost/tokenizer.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/static_assert.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
+#include <boost/algorithm/string.hpp>
+#pragma GCC diagnostic pop
 
 // agg
 #include "agg_trans_affine.h"
@@ -375,25 +378,15 @@ void map_parser::parse_map_include(Map & map, xml_node const& node)
                 {
                     if (p.is("Parameter"))
                     {
-                        bool is_string = true;
-                        boost::optional<std::string> type = p.get_opt_attr<std::string>("type");
-                        if (type)
-                        {
-                            if (*type == "int")
-                            {
-                                is_string = false;
-                                params[p.get_attr<std::string>("name")] = p.get_value<mapnik::value_integer>();
-                            }
-                            else if (*type == "float")
-                            {
-                                is_string = false;
-                                params[p.get_attr<std::string>("name")] = p.get_value<mapnik::value_double>();
-                            }
-                        }
-                        if (is_string)
-                        {
-                            params[p.get_attr<std::string>("name")] = p.get_text();
-                        }
+                        std::string val = p.get_text();
+                        std::string key = p.get_attr<std::string>("name");
+                        mapnik::value_bool b;
+                        mapnik::value_integer i;
+                        mapnik::value_double d;
+                        if (mapnik::util::string2bool(val,b)) params[key] = b;
+                        else if (mapnik::util::string2int(val,i)) params[key] = i;
+                        else if (mapnik::util::string2double(val,d)) params[key] = d;
+                        else params[key] = val;
                     }
                 }
             }

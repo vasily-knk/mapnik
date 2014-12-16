@@ -1,6 +1,7 @@
 #include "bench_framework.hpp"
 #include <cstring>
 #include <cstdlib>
+#include <deque>
 #include <stdexcept>
 #include <array>
 #include <valarray>
@@ -76,6 +77,31 @@ public:
          }
     }
 };
+
+class test1c : public benchmark::test_case
+{
+public:
+    uint32_t size_;
+    std::vector<uint8_t> array_;
+    test1c(mapnik::parameters const& params)
+     : test_case(params),
+       size_(*params.get<mapnik::value_integer>("size",256*256)),
+       array_(size_,0) { }
+    bool validate() const
+    {
+        return true;
+    }
+    void operator()() const
+    {
+         for (std::size_t i=0;i<iterations_;++i) {
+             uint8_t *data = static_cast<uint8_t *>(::operator new(sizeof(uint8_t) * size_));
+             std::fill(data,data + size_,0);
+             ensure_zero(data,size_);
+             ::operator delete(data);
+         }
+    }
+};
+
 
 class test2 : public benchmark::test_case
 {
@@ -168,6 +194,33 @@ public:
              data.assign(size_,0);
              ensure_zero(&data[0],data.size());
          }
+    }
+};
+
+class test3d : public benchmark::test_case
+{
+public:
+    uint32_t size_;
+    std::vector<uint8_t> array_;
+    test3d(mapnik::parameters const& params)
+     : test_case(params),
+       size_(*params.get<mapnik::value_integer>("size",256*256)),
+       array_(size_,0) { }
+    bool validate() const
+    {
+        return true;
+    }
+    bool operator()() const
+    {
+         for (std::size_t i=0;i<iterations_;++i) {
+             std::deque<uint8_t> data(size_);
+             for (std::size_t i=0;i<size_;++i) {
+                 if (data[i] != 0) {
+                     throw std::runtime_error("found non zero value");
+                 }
+             }
+         }
+         return true;
     }
 };
 
@@ -307,11 +360,14 @@ int main(int argc, char** argv)
     {
         test1b test_runner(params);
         run(test_runner,"malloc/memset");
-
+    }
+    {
+        test1c test_runner(params);
+        run(test_runner,"operator new/std::fill");
     }
     {
         test2 test_runner(params);
-        run(test_runner,"new");
+        run(test_runner,"operator new/memcpy");
     }
     {
         test3 test_runner(params);
@@ -324,6 +380,10 @@ int main(int argc, char** argv)
     {
         test3c test_runner(params);
         run(test_runner,"vector/assign");
+    }
+    {
+        test3d test_runner(params);
+        run(test_runner,"deque(N)");
     }
     {
         test5 test_runner(params);

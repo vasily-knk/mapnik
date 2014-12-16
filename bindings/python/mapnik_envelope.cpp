@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2006 Artem Pavlenko, Jean-Francois Doyon
+ * Copyright (C) 2014 Artem Pavlenko, Jean-Francois Doyon
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,10 +22,14 @@
 
 #include <mapnik/config.hpp>
 
-#include "boost_std_shared_shim.hpp"
-
 // boost
+#include "boost_std_shared_shim.hpp"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
 #include <boost/python.hpp>
+#pragma GCC diagnostic pop
 
 // mapnik
 #include <mapnik/box2d.hpp>
@@ -94,7 +98,7 @@ void (box2d<double>::*clip)(box2d<double> const&) = &box2d<double>::clip;
 void (box2d<double>::*pad)(double) = &box2d<double>::pad;
 
 // deepcopy
-box2d<double> box2d_deepcopy(box2d<double> & obj, boost::python::dict memo)
+box2d<double> box2d_deepcopy(box2d<double> & obj, boost::python::dict const&)
 {
     // FIXME::ignore memo for now
     box2d<double> result(obj);

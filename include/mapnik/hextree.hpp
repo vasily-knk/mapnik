@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -29,10 +29,9 @@
 #include <mapnik/noncopyable.hpp>
 
 // stl
-#include <vector>
-#include <cstring>
-#include <set>
 #include <algorithm>
+#include <vector>
+#include <set>
 #include <cmath>
 
 namespace mapnik {
@@ -67,7 +66,7 @@ class hextree : private mapnik::noncopyable
               reduce_cost(0.0),
               children_count(0)
         {
-            std::memset(&children_[0],0,sizeof(children_));
+            std::fill(children_, children_ + 16, nullptr);
         }
 
         ~node ()

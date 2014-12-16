@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -46,8 +46,12 @@
 #include <mapnik/group/group_layout.hpp>
 #include <mapnik/group/group_symbolizer_properties.hpp>
 #include <mapnik/util/variant.hpp>
+
 // boost
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
 #include <boost/algorithm/string.hpp>
+#pragma GCC diagnostic pop
 #include <boost/optional.hpp>
 #include <boost/version.hpp>
 #include <boost/property_tree/ptree.hpp>
@@ -287,7 +291,7 @@ public:
     }
 
     template <typename T>
-    void operator () ( T const& val ) const {}
+    void operator () ( T const& ) const {}
 
 private:
     ptree & parent_node_;
@@ -484,36 +488,6 @@ void serialize_datasource( ptree & layer_node, datasource_ptr datasource)
     }
 }
 
-class serialize_type : public util::static_visitor<>
-{
-public:
-    serialize_type( boost::property_tree::ptree & node):
-        node_(node) {}
-
-    void operator () ( mapnik::value_integer ) const
-    {
-        node_.put("<xmlattr>.type", "int" );
-    }
-
-    void operator () ( mapnik::value_double ) const
-    {
-        node_.put("<xmlattr>.type", "float" );
-    }
-
-    void operator () ( std::string const& ) const
-    {
-        node_.put("<xmlattr>.type", "string" );
-    }
-
-    void operator () ( mapnik::value_null ) const
-    {
-        node_.put("<xmlattr>.type", "string" );
-    }
-
-private:
-    boost::property_tree::ptree & node_;
-};
-
 void serialize_parameters( ptree & map_node, mapnik::parameters const& params)
 {
     if (params.size()) {
@@ -527,7 +501,6 @@ void serialize_parameters( ptree & map_node, mapnik::parameters const& params)
                                                         boost::property_tree::ptree()))->second;
             param_node.put("<xmlattr>.name", p.first );
             param_node.put_value( p.second );
-            util::apply_visitor(serialize_type(param_node),p.second);
         }
     }
 }

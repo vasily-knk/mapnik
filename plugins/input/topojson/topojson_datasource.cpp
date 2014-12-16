@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2012 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -120,7 +120,7 @@ struct collect_attributes_visitor : public mapnik::util::static_visitor<void>
     collect_attributes_visitor(mapnik::layer_descriptor & desc):
       desc_(desc) {}
 
-    void operator() (mapnik::topojson::invalid const& g) {}
+    void operator() (mapnik::topojson::invalid const&) {}
 
     template <typename GeomType>
     void operator() (GeomType const& g)

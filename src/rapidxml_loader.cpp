@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -39,20 +39,16 @@
 #include <fstream>
 
 namespace rapidxml = boost::property_tree::detail::rapidxml;
+
 namespace mapnik
 {
 class rapidxml_loader : mapnik::noncopyable
 {
 public:
-    rapidxml_loader(const char *encoding = nullptr) :
-        filename_()
-    {
+    rapidxml_loader() :
+        filename_() {}
 
-    }
-
-    ~rapidxml_loader()
-    {
-    }
+    ~rapidxml_loader() {}
 
     void load(std::string const& filename, xml_node & node)
     {

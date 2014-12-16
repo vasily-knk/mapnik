@@ -85,6 +85,21 @@ Mapnik is written in C++, and we try to follow general coding guidelines.
 
 If you see bits of code around that do not follow these please don't hesitate to flag the issue or correct it yourself.
 
+#### Prefix cmath functions with std::
+
+The avoids ambiguity and potential bugs of using old C library math directly.
+
+So always do `std::abs()` instead of `abs()`. Here is a script to fix your code in one fell swoop:
+
+
+```sh
+DIR=./bindings
+for i in {abs,fabs,tan,sin,cos,floor,ceil,atan2,acos,asin}; do
+    find $DIR -type f -name '*.cpp' -or -name '*.h' -or -name '*.hpp' | xargs perl -i -p -e "s/ $i\(/ std::$i\(/g;"
+    find $DIR -type f -name '*.cpp' -or -name '*.h' -or -name '*.hpp' | xargs perl -i -p -e "s/\($i\(/\(std::$i\(/g;"
+done
+```
+
 #### Avoid boost::lexical_cast
 
 It's slow both to compile and at runtime.
@@ -118,6 +133,10 @@ which triggers locks
 
     void my_function(std::string const& val); // if std::string or user type, pass by const&
 
+
+#### When to use shared_ptr and unique_ptr
+
+Sparingly, always prefer passing objects as const& except where using share_ptr or unique_ptr express more clearly your intent. See http://herbsutter.com/2013/06/05/gotw-91-solution-smart-pointer-parameters/ for more details.
 
 #### Shared pointers should be created with [boost::make_shared](http://www.boost.org/doc/libs/1_47_0/libs/smart_ptr/make_shared.html) where possible
 

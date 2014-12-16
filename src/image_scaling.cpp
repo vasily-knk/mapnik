@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -27,8 +27,12 @@
 //#include <mapnik/span_image_filter.hpp>
 
 // boost
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
+#pragma GCC diagnostic ignored "-Wredeclared-class-member"
 #include <boost/assign/list_of.hpp>
 #include <boost/bimap.hpp>
+#pragma GCC diagnostic pop
 
 // agg
 #include "agg_image_accessors.h"

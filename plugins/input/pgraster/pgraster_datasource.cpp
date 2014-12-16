@@ -39,9 +39,12 @@
 #include <mapnik/value_types.hpp>
 
 // boost
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
 #include <boost/algorithm/string.hpp>
 #include <boost/tokenizer.hpp>
-#include <boost/make_shared.hpp>
+#pragma GCC diagnostic pop
 
 // stl
 #include <string>
@@ -352,12 +355,22 @@ pgraster_datasource::pgraster_datasource(parameters const& params)
                 shared_ptr<ResultSet> rs = conn->executeQuery(s.str());
                 while (rs->next())
                 {
-                  overviews_.resize(overviews_.size()+1);
-                  pgraster_overview& ov = overviews_.back();
-                  ov.schema = rs->getValue("sch");
+                  pgraster_overview ov = pgraster_overview();
+
+                  ov.schema = rs->getValue("sch"); 
                   ov.table = rs->getValue("tab");
                   ov.column = rs->getValue("col");
                   ov.scale = atof(rs->getValue("scl"));
+
+                  if(ov.scale == 0.0f)
+                  {
+                    MAPNIK_LOG_WARN(pgraster) << "pgraster_datasource: found invalid overview "
+                      << ov.schema << "." << ov.table << "." << ov.column << " with scale " << ov.scale;
+                    continue;
+                  }
+
+                  overviews_.push_back(ov);
+
                   MAPNIK_LOG_DEBUG(pgraster) << "pgraster_datasource: found overview " << ov.schema << "." << ov.table << "." << ov.column << " with scale " << ov.scale;
                 }
                 rs->close();

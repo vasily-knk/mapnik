@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -27,6 +27,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <memory>
 
 // mapnik
 #include <mapnik/debug.hpp>
@@ -38,8 +39,11 @@
 #include <mapnik/util/fs.hpp>
 
 // boost
-#include <memory>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
 #include <boost/algorithm/string.hpp>
+#pragma GCC diagnostic pop
 
 // sqlite
 extern "C" {
@@ -680,8 +684,8 @@ public:
                     desc.add_descriptor(mapnik::attribute_descriptor(fld_name, mapnik::String));
                 }
                 else if (boost::algorithm::contains(fld_type, "real") ||
-                         boost::algorithm::contains(fld_type, "float") ||
-                         boost::algorithm::contains(fld_type, "double"))
+                         boost::algorithm::contains(fld_type, "floa") ||
+                         boost::algorithm::contains(fld_type, "doub"))
                 {
                     desc.add_descriptor(mapnik::attribute_descriptor(fld_name, mapnik::Double));
                 }
@@ -697,14 +701,17 @@ public:
                     // "Column Affinity" says default to "Numeric" but for now we pass..
                     //desc_.add_descriptor(attribute_descriptor(fld_name,mapnik::Double));
 
+                    desc.add_descriptor(mapnik::attribute_descriptor(fld_name, mapnik::String));
+
 #ifdef MAPNIK_LOG
                     // Do not fail when we specify geometry_field in XML file
                     if (field.empty())
                     {
                         MAPNIK_LOG_DEBUG(sqlite) << "Column '"
                                                  << std::string(fld_name)
-                                                 << "' unhandled due to unknown type: "
-                                                 << fld_type;
+                                                 << "' unhandled due to unknown type: '"
+                                                 << fld_type
+                                                 << "', using String";
                     }
 #endif
                 }

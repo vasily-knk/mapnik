@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -25,6 +25,7 @@
 
 // stl
 #include <string.h>
+#include <memory>
 
 // mapnik
 #include <mapnik/datasource.hpp>
@@ -32,8 +33,11 @@
 #include <mapnik/timer.hpp>
 
 // boost
-#include <memory>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
 #include <boost/algorithm/string.hpp>
+#pragma GCC diagnostic pop
 
 // sqlite
 extern "C" {

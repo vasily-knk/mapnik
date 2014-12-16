@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -47,6 +47,13 @@ public:
            bool premultiplied_alpha = false)
         : ext_(ext),
           data_(width,height),
+          filter_factor_(filter_factor),
+          premultiplied_alpha_(premultiplied_alpha) {}
+
+    raster(box2d<double> const& ext, image_data_32 && data,
+           double filter_factor, bool premultiplied_alpha = false)
+        : ext_(ext),
+          data_(std::move(data)),
           filter_factor_(filter_factor),
           premultiplied_alpha_(premultiplied_alpha) {}
 

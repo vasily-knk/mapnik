@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2012 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -178,10 +178,10 @@ expression_grammar<Iterator>::expression_grammar(std::string const& encoding)
 
     primary_expr = strict_double [_val = _1]
         | int__[_val = _1]
-        | no_case[lit("true")] [_val = true]
-        | no_case[lit("false")] [_val = false]
+        | no_case[bool_const][_val = _1]
         | no_case[lit("null")] [_val = value_null() ]
         | no_case[geom_type][_val = _1 ]
+        | no_case[float_const] [_val = _1 ]
         | quoted_ustring [_val = unicode_(_1)]
         | lit("[mapnik::geometry_type]")[_val = construct<mapnik::geometry_type_attribute>()]
         | attr [_val = construct<mapnik::attribute>( _1 ) ]

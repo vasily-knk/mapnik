@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2013 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -35,9 +35,13 @@ extern "C"
 #pragma clang diagnostic pop
 
 // boost
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedef"
 #include <boost/iostreams/device/file.hpp>
 #include <boost/iostreams/device/array.hpp>
 #include <boost/iostreams/stream.hpp>
+#pragma GCC diagnostic pop
+
 // stl
 #include <fstream>
 
@@ -237,8 +241,8 @@ void webp_reader<T>::read(unsigned x0, unsigned y0,image_data_32& image)
     config.options.use_cropping = 1;
     config.options.crop_left = x0;
     config.options.crop_top = y0;
-    config.options.crop_width = std::min(width_ - x0, image.width());
-    config.options.crop_height = std::min(height_ - y0, image.height());
+    config.options.crop_width = std::min(static_cast<std::size_t>(width_ - x0), image.width());
+    config.options.crop_height = std::min(static_cast<std::size_t>(height_ - y0), image.height());
 
     if (WebPGetFeatures(buffer_->data(), buffer_->size(), &config.input) != VP8_STATUS_OK)
     {
@@ -246,7 +250,7 @@ void webp_reader<T>::read(unsigned x0, unsigned y0,image_data_32& image)
     }
 
     config.output.colorspace = MODE_RGBA;
-    config.output.u.RGBA.rgba = (uint8_t *)image.getBytes();
+    config.output.u.RGBA.rgba = reinterpret_cast<uint8_t *>(image.getBytes());
     config.output.u.RGBA.stride = 4 * image.width();
     config.output.u.RGBA.size = image.width() * image.height() * 4;
     config.output.is_external_memory = 1;

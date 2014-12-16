@@ -2,7 +2,7 @@
  *
  * This file is part of Mapnik (c++ mapping toolkit)
  *
- * Copyright (C) 2011 Artem Pavlenko
+ * Copyright (C) 2014 Artem Pavlenko
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -40,15 +40,15 @@ namespace mapnik {
 struct symbol_type_dispatch : public util::static_visitor<bool>
 {
     template <typename Symbolizer>
-    bool operator()(Symbolizer const& sym) const
+    bool operator()(Symbolizer const&) const
     {
         return false;
     }
-    bool operator()(line_symbolizer const& sym) const
+    bool operator()(line_symbolizer const&) const
     {
         return true;
     }
-    bool operator()(polygon_symbolizer const& sym) const
+    bool operator()(polygon_symbolizer const&) const
     {
         return true;
     }

@@ -81,6 +81,8 @@ void agg_renderer<T0,T1>::process(dot_symbolizer const& sym,
     renderer_type ren(renb);
     agg::scanline_u8 sl;
     ren.color(agg::rgba8_pre(fill.red(), fill.green(), fill.blue(), int(fill.alpha() * opacity)));
+    agg::ellipse el(0,0,rx,ry);
+    unsigned num_steps = el.num_steps();
     for (geometry_type const& geom : feature.paths()) {
             double x,y,z = 0;
             unsigned cmd = 1;
@@ -89,7 +91,7 @@ void agg_renderer<T0,T1>::process(dot_symbolizer const& sym,
                 if (cmd == SEG_CLOSE) continue;
                 prj_trans.backward(x,y,z);
                 common_.t_.forward(&x,&y);
-                agg::ellipse el(x,y,rx,ry);
+                el.init(x,y,rx,ry,num_steps);
                 ras_ptr->add_path(el);
                 agg::render_scanlines(*ras_ptr, sl, ren);
             }

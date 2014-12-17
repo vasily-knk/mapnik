@@ -51,7 +51,7 @@ void agg_renderer<T0,T1>::process(dot_symbolizer const& sym,
     double rx = get<double>(sym, keys::rx, feature, common_.vars_, 1.0);
     double ry = get<double>(sym, keys::ry, feature, common_.vars_, 1.0);
     double opacity = get<double>(sym, keys::opacity, feature, common_.vars_, 1.0);
-    color const& fill = get<mapnik::color>(sym, keys::fill_opacity, feature, common_.vars_, mapnik::color(128,128,128));
+    color const& fill = get<mapnik::color>(sym, keys::opacity, feature, common_.vars_, mapnik::color(128,128,128));
     ras_ptr->reset();
     agg::rendering_buffer buf(current_buffer_->raw_data(),current_buffer_->width(),current_buffer_->height(),current_buffer_->width() * 4);
     using blender_type = agg::comp_op_adaptor_rgba_pre<agg::rgba8, agg::order_rgba>;

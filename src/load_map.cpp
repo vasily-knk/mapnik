@@ -919,10 +919,10 @@ void map_parser::parse_dot_symbolizer(rule & rule, xml_node const & node)
     try
     {
         dot_symbolizer sym;
-        set_symbolizer_property<symbolizer_base,color>(sym, keys::width, node);
-        set_symbolizer_property<symbolizer_base,color>(sym, keys::height, node);
         set_symbolizer_property<symbolizer_base,color>(sym, keys::fill, node);
         set_symbolizer_property<symbolizer_base,double>(sym, keys::opacity, node);
+        set_symbolizer_property<symbolizer_base,double>(sym, keys::width, node);
+        set_symbolizer_property<symbolizer_base,double>(sym, keys::height, node);
         set_symbolizer_property<symbolizer_base,composite_mode_e>(sym, keys::comp_op, node);
         rule.append(std::move(sym));
     }

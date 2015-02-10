@@ -95,7 +95,7 @@ struct attr_value_converter
     }
 };
 
-geojson_datasource::geojson_datasource(parameters const& params)
+geojson_datasource::geojson_datasource(parameters & params)
   : datasource(params),
     type_(datasource::Vector),
     desc_(geojson_datasource::name(),
@@ -171,6 +171,7 @@ geojson_datasource::geojson_datasource(parameters const& params)
         }
 #endif
     }
+    desc_.set_extra_parameters(params);
 }
 
 namespace {

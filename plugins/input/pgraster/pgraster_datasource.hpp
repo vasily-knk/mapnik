@@ -76,7 +76,7 @@ struct pgraster_overview
 class pgraster_datasource : public datasource
 {
 public:
-    pgraster_datasource(const parameters &params);
+    pgraster_datasource(parameters &params);
     ~pgraster_datasource();
     mapnik::datasource::datasource_t type() const;
     static const char * name();

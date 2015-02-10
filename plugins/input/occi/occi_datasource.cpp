@@ -65,7 +65,7 @@ const std::string occi_datasource::METADATA_TABLE = "USER_SDO_GEOM_METADATA";
 
 DATASOURCE_PLUGIN(occi_datasource)
 
-occi_datasource::occi_datasource(parameters const& params)
+occi_datasource::occi_datasource(parameters & params)
     : datasource (params),
       type_(datasource::Vector),
       fields_(*params.get<std::string>("fields", "*")),
@@ -112,6 +112,7 @@ occi_datasource::occi_datasource(parameters const& params)
     {
         srid_ = *srid;
         srid_initialized_ = true;
+        desc_.set_extra_parameters("srid", srid_);
     }
 
     // connect to environment
@@ -146,7 +147,7 @@ occi_datasource::occi_datasource(parameters const& params)
             throw datasource_exception("OCCI Plugin: " + ex.getMessage());
         }
     }
-
+    desc_.set_extra_parameters(params);
     // extract real table name
     table_name_ = mapnik::sql_utils::table_from_sql(table_);
 

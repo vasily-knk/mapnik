@@ -45,7 +45,7 @@ using mapnik::image_reader;
 
 DATASOURCE_PLUGIN(raster_datasource)
 
-raster_datasource::raster_datasource(parameters const& params)
+raster_datasource::raster_datasource(parameters & params)
   : datasource(params),
     desc_(raster_datasource::name(), "utf-8"),
     extent_initialized_(false)
@@ -149,7 +149,7 @@ raster_datasource::raster_datasource(parameters const& params)
     }
 
     MAPNIK_LOG_DEBUG(raster) << "raster_datasource: Raster size=" << width_ << "," << height_;
-
+    desc_.set_extra_parameters(params);
 }
 
 raster_datasource::~raster_datasource()

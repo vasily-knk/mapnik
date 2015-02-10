@@ -50,7 +50,7 @@ public:
     std::string plugin_directories();
     bool register_datasources(std::string const& path, bool recurse = false);
     bool register_datasource(std::string const& path);
-    std::shared_ptr<datasource> create(parameters const& params);
+    std::shared_ptr<datasource> create(parameters & params);
 private:
     datasource_cache();
     ~datasource_cache();

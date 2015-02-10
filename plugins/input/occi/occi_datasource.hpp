@@ -47,7 +47,7 @@
 class occi_datasource : public mapnik::datasource
 {
 public:
-    occi_datasource(mapnik::parameters const& params);
+    occi_datasource(mapnik::parameters & params);
     virtual ~occi_datasource ();
     mapnik::datasource::datasource_t type() const;
     static const char * name();

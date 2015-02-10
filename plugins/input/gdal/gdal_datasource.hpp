@@ -45,7 +45,7 @@
 class gdal_datasource : public mapnik::datasource
 {
 public:
-    gdal_datasource(mapnik::parameters const& params);
+    gdal_datasource(mapnik::parameters & params);
     virtual ~gdal_datasource();
     mapnik::datasource::datasource_t type() const;
     static const char * name();

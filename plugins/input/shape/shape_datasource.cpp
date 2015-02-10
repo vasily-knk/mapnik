@@ -60,7 +60,7 @@ using mapnik::filter_in_box;
 using mapnik::filter_at_point;
 using mapnik::attribute_descriptor;
 
-shape_datasource::shape_datasource(parameters const& params)
+shape_datasource::shape_datasource(parameters & params)
     : datasource (params),
       type_(datasource::Vector),
       file_length_(0),
@@ -157,7 +157,7 @@ shape_datasource::shape_datasource(parameters const& params)
         MAPNIK_LOG_ERROR(shape) << "Shape Plugin: error processing field attributes";
         throw;
     }
-
+    desc_.set_extra_parameters(params);
 }
 
 void shape_datasource::init(shape_io& shape)

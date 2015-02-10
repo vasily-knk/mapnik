@@ -48,7 +48,7 @@
 class sqlite_datasource : public mapnik::datasource
 {
 public:
-    sqlite_datasource(mapnik::parameters const& params);
+    sqlite_datasource(mapnik::parameters & params);
     virtual ~sqlite_datasource ();
     datasource::datasource_t type() const;
     static const char * name();

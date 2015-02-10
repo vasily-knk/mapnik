@@ -183,8 +183,22 @@ boost::optional<T> parameters::get(std::string const& key) const
 }
 
 template <typename T>
+boost::optional<T> parameters::get(std::string const& key)
+{
+    visited_[key] = true;
+    return params_detail::converter<T>::extract(*this,key, boost::none);
+}
+
+template <typename T>
 boost::optional<T> parameters::get(std::string const& key, T const& default_opt_value) const
 {
+    return params_detail::converter<T>::extract(*this,key,boost::optional<T>(default_opt_value));
+}
+
+template <typename T>
+boost::optional<T> parameters::get(std::string const& key, T const& default_opt_value)
+{
+    visited_[key] = true;
     return params_detail::converter<T>::extract(*this,key,boost::optional<T>(default_opt_value));
 }
 

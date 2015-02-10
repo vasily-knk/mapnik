@@ -65,7 +65,7 @@ public:
     using spatial_index_type = boost::geometry::index::rtree<item_type,linear_type>;
 
     // constructor
-    topojson_datasource(mapnik::parameters const& params);
+    topojson_datasource(mapnik::parameters & params);
     virtual ~topojson_datasource ();
     mapnik::datasource::datasource_t type() const;
     static const char * name();

@@ -94,6 +94,29 @@ public:
         return extra_params_;
     }
 
+    void set_extra_parameters(parameters const& params)
+    {
+        for (auto const& p : params)
+        {
+            if (!params.is_visited(p.first))
+            {
+                std::string val = util::get<std::string>(p.second);
+                mapnik::value_bool b;
+                mapnik::value_integer i;
+                mapnik::value_double d;
+                if (mapnik::util::string2bool(val,b)) extra_params_[p.first] = std::move(b);
+                else if (mapnik::util::string2int(val,i)) extra_params_[p.first] = std::move(i);
+                else if (mapnik::util::string2double(val,d)) extra_params_[p.first] = std::move(d);
+                else extra_params_[p.first] = std::move(val);
+            }
+        }
+    }
+
+    void set_extra_parameters(std::string const& key, value_holder val)
+    {
+        extra_params_[key] = val;
+    }
+
 private:
     std::string name_;
     std::string encoding_;

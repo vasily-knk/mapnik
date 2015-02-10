@@ -62,11 +62,36 @@ class MAPNIK_DECL parameters : public param_map
 {
 public:
     parameters() {}
+
     template <typename T>
     boost::optional<T> get(std::string const& key) const;
+    
+    template <typename T>
+    boost::optional<T> get(std::string const& key);
+    
     template <typename T>
     boost::optional<T> get(std::string const& key, T const& default_opt_value) const;
+    
+    template <typename T>
+    boost::optional<T> get(std::string const& key, T const& default_opt_value);
+    
+    bool is_visited(std::string const& key) const
+    {
+        std::map<std::string, bool>::const_iterator itr = visited_.find(key);
+        if (itr != visited_.end())
+        {
+            return itr->second;
+        }
+        return false;
+    }
 
+    void set_visited(std::string const& key)
+    {
+        visited_[key] = true;   
+    }
+
+private:
+    std::map<std::string, bool> visited_;
 };
 
 #ifdef _MSC_VER

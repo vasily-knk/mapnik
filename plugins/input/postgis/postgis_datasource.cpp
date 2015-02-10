@@ -61,7 +61,7 @@ const std::string postgis_datasource::SPATIAL_REF_SYS = "spatial_ref_system";
 using std::shared_ptr;
 using mapnik::attribute_descriptor;
 
-postgis_datasource::postgis_datasource(parameters const& params)
+postgis_datasource::postgis_datasource(parameters & params)
     : datasource(params),
       table_(*params.get<std::string>("table", "")),
       schema_(""),
@@ -446,14 +446,14 @@ postgis_datasource::postgis_datasource(parameters const& params)
         conn->close();
 
         // Finally, add unique metadata to layer descriptor
-        mapnik::parameters & extra_params = desc_.get_extra_parameters();
         // explicitly make copies of values due to https://github.com/mapnik/mapnik/issues/2651
-        extra_params["srid"] = srid_;
+        desc_.set_extra_parameters("srid", srid_);
         if (!key_field_.empty())
         {
-            extra_params["key_field"] = key_field_;
+            desc_.set_extra_parameters("key_field", srid_);
         }
     }
+    desc_.set_extra_parameters(params);
 }
 
 postgis_datasource::~postgis_datasource()

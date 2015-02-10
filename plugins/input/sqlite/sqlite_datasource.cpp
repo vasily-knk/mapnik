@@ -51,7 +51,7 @@ using mapnik::parameters;
 
 DATASOURCE_PLUGIN(sqlite_datasource)
 
-sqlite_datasource::sqlite_datasource(parameters const& params)
+sqlite_datasource::sqlite_datasource(parameters & params)
     : datasource(params),
       extent_(),
       extent_initialized_(false),
@@ -352,7 +352,7 @@ sqlite_datasource::sqlite_datasource(parameters const& params)
             throw datasource_exception(s.str());
         }
     }
-
+    desc_.set_extra_parameters(params);
 }
 
 std::string sqlite_datasource::populate_tokens(std::string const& sql) const

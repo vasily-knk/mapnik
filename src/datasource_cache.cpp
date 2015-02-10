@@ -65,7 +65,7 @@ datasource_cache::~datasource_cache()
     PluginInfo::exit();
 }
 
-datasource_ptr datasource_cache::create(parameters const& params)
+datasource_ptr datasource_cache::create(parameters & params)
 {
     boost::optional<std::string> type = params.get<std::string>("type");
     if ( ! type)

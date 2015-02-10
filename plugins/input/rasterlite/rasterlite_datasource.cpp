@@ -70,7 +70,7 @@ inline void* rasterlite_datasource::open_dataset() const
 }
 
 
-rasterlite_datasource::rasterlite_datasource(parameters const& params)
+rasterlite_datasource::rasterlite_datasource(parameters & params)
     : datasource(params),
       desc_(rasterlite_datasource::name(),"utf-8")
 {
@@ -147,6 +147,7 @@ rasterlite_datasource::rasterlite_datasource(parameters const& params)
 #endif
 
     rasterliteClose(dataset);
+    desc_.set_extra_parameters(params);
 }
 
 rasterlite_datasource::~rasterlite_datasource()

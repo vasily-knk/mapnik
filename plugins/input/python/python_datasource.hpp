@@ -17,7 +17,7 @@ class python_datasource : public mapnik::datasource
 public:
     // constructor
     // arguments must not change
-    python_datasource(mapnik::parameters const& params);
+    python_datasource(mapnik::parameters & params);
 
     // destructor
     virtual ~python_datasource ();

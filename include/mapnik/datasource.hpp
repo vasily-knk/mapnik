@@ -148,7 +148,7 @@ using datasource_ptr = std::shared_ptr<datasource>;
         {                                                                   \
             return classname::name();                                       \
         }                                                                   \
-        extern "C"  MAPNIK_EXP datasource* create(parameters const& params) \
+        extern "C"  MAPNIK_EXP datasource* create(parameters & params) \
         {                                                                   \
             return new classname(params);                                   \
         }                                                                   \

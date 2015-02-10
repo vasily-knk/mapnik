@@ -44,7 +44,7 @@
 class csv_datasource : public mapnik::datasource
 {
 public:
-    csv_datasource(mapnik::parameters const& params);
+    csv_datasource(mapnik::parameters & params);
     virtual ~csv_datasource ();
     mapnik::datasource::datasource_t type() const;
     static const char * name();

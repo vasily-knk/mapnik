@@ -47,7 +47,7 @@
 class ogr_datasource : public mapnik::datasource
 {
 public:
-    ogr_datasource(mapnik::parameters const& params);
+    ogr_datasource(mapnik::parameters & params);
     virtual ~ogr_datasource ();
     mapnik::datasource::datasource_t type() const;
     static const char * name();
@@ -58,7 +58,7 @@ public:
     mapnik::layer_descriptor get_descriptor() const;
 
 private:
-    void init(mapnik::parameters const& params);
+    void init(mapnik::parameters & params);
     mapnik::box2d<double> extent_;
     mapnik::datasource::datasource_t type_;
     std::string dataset_name_;

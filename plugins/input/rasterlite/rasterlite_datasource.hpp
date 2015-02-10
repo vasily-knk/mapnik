@@ -45,7 +45,7 @@
 class rasterlite_datasource : public mapnik::datasource
 {
 public:
-    rasterlite_datasource(mapnik::parameters const& params);
+    rasterlite_datasource(mapnik::parameters & params);
     virtual ~rasterlite_datasource ();
     mapnik::datasource::datasource_t type() const;
     static const char * name();

@@ -44,7 +44,7 @@
 class raster_datasource : public mapnik::datasource
 {
 public:
-    raster_datasource(const mapnik::parameters& params);
+    raster_datasource(mapnik::parameters& params);
     virtual ~raster_datasource();
     datasource::datasource_t type() const;
     static const char * name();

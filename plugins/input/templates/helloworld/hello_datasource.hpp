@@ -22,7 +22,7 @@ class hello_datasource : public mapnik::datasource
 public:
     // constructor
     // arguments must not change
-    hello_datasource(mapnik::parameters const& params);
+    hello_datasource(mapnik::parameters & params);
 
     // destructor
     virtual ~hello_datasource ();

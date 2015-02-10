@@ -56,7 +56,7 @@ using mapnik::parameters;
 
 DATASOURCE_PLUGIN(csv_datasource)
 
-csv_datasource::csv_datasource(parameters const& params)
+csv_datasource::csv_datasource(parameters & params)
   : datasource(params),
     desc_(csv_datasource::name(), *params.get<std::string>("encoding", "utf-8")),
     extent_(),
@@ -119,6 +119,7 @@ csv_datasource::csv_datasource(parameters const& params)
         else
             filename_ = *file;
     }
+    desc_.set_extra_parameters(params);
     if (!inline_string_.empty())
     {
         std::istringstream in(inline_string_);

@@ -137,7 +137,7 @@ struct collect_attributes_visitor
     }
 };
 
-topojson_datasource::topojson_datasource(parameters const& params)
+topojson_datasource::topojson_datasource(parameters & params)
   : datasource(params),
     type_(datasource::Vector),
     desc_(topojson_datasource::name(),
@@ -180,6 +180,7 @@ topojson_datasource::topojson_datasource(parameters const& params)
         std::fread(&file_buffer[0], file.size(), 1, file.get());
         parse_topojson(file_buffer);
     }
+    desc_.set_extra_parameters(params);
 }
 
 namespace {

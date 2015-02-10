@@ -18,7 +18,7 @@ hello_datasource::hello_datasource(parameters const& params)
     this->init(params);
 }
 
-void hello_datasource::init(mapnik::parameters const& params)
+void hello_datasource::init(mapnik::parameters & params)
 {
     // every datasource must have some way of reporting its extent
     // in this case we are not actually reading from any data so for fun
@@ -26,6 +26,9 @@ void hello_datasource::init(mapnik::parameters const& params)
     // '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs' (equivalent to +init=epsg:4326)
     // see http://spatialreference.org/ref/epsg/4326/ for more details
     extent_.init(-180,-90,180,90);
+    // You shouldn't modify params in the constructor, and at end all parameters not
+    // retrieved with 'params.get' will be added to the extra parameters in the desc_. 
+    desc_.set_extra_parameters(params);
 }
 
 hello_datasource::~hello_datasource() { }

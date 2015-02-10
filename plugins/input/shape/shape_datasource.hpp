@@ -53,7 +53,7 @@ using mapnik::coord2d;
 class shape_datasource : public datasource
 {
 public:
-    shape_datasource(parameters const& params);
+    shape_datasource(parameters & params);
     virtual ~shape_datasource();
     datasource::datasource_t type() const;
     static const char * name();

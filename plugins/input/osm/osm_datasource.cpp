@@ -48,7 +48,7 @@ using mapnik::attribute_descriptor;
 
 DATASOURCE_PLUGIN(osm_datasource)
 
-osm_datasource::osm_datasource(const parameters& params)
+osm_datasource::osm_datasource(parameters& params)
     : datasource (params),
       extent_(),
       type_(datasource::Vector),
@@ -99,6 +99,7 @@ osm_datasource::osm_datasource(const parameters& params)
     // Get the bounds of the data and set extent_ accordingly
     bounds b = osm_data_->get_bounds();
     extent_ = box2d<double>(b.w,b.s,b.e,b.n);
+    desc_.set_extra_parameters(params);
 }
 
 osm_datasource::~osm_datasource()

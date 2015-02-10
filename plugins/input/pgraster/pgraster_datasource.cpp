@@ -73,7 +73,7 @@ namespace {
 
 };
 
-pgraster_datasource::pgraster_datasource(parameters const& params)
+pgraster_datasource::pgraster_datasource(parameters & params)
     : datasource(params),
       table_(*params.get<std::string>("table", "")),
       schema_(""),
@@ -578,6 +578,7 @@ pgraster_datasource::pgraster_datasource(parameters const& params)
         conn->close();
 
     }
+    desc_.set_extra_parameters(params);
 }
 
 pgraster_datasource::~pgraster_datasource()

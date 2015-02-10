@@ -53,7 +53,7 @@ using mapnik::box2d;
 class osm_datasource : public datasource
 {
 public:
-    osm_datasource(const parameters& params);
+    osm_datasource(parameters& params);
     virtual ~osm_datasource();
     mapnik::datasource::datasource_t type() const;
     static const char * name();

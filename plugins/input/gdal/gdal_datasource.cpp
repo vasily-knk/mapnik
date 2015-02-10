@@ -74,7 +74,7 @@ inline GDALDataset* gdal_datasource::open_dataset() const
 }
 
 
-gdal_datasource::gdal_datasource(parameters const& params)
+gdal_datasource::gdal_datasource(parameters & params)
     : datasource(params),
       desc_(gdal_datasource::name(), "utf-8"),
       nodata_value_(params.get<double>("nodata")),
@@ -155,7 +155,7 @@ gdal_datasource::gdal_datasource(parameters const& params)
                                    << tr[4] << "," << tr[5];
         }
     }
-
+    desc_.set_extra_parameters(params);
     // TODO - We should throw for true non-north up images, but the check
     // below is clearly too restrictive.
     // https://github.com/mapnik/mapnik/issues/970

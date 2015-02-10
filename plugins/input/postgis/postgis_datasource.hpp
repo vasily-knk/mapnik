@@ -65,7 +65,7 @@ using CnxPool_ptr = std::shared_ptr< ConnectionManager::PoolType>;
 class postgis_datasource : public datasource
 {
 public:
-    postgis_datasource(const parameters &params);
+    postgis_datasource(parameters &params);
     ~postgis_datasource();
     mapnik::datasource::datasource_t type() const;
     static const char * name();

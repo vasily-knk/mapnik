@@ -24,7 +24,7 @@ using mapnik::parameters;
 
 DATASOURCE_PLUGIN(python_datasource)
 
-python_datasource::python_datasource(parameters const& params)
+python_datasource::python_datasource(parameters & params)
   : datasource(params),
     desc_(python_datasource::name(), *params.get<std::string>("encoding","utf-8")),
     factory_(*params.get<std::string>("factory", ""))
@@ -35,6 +35,11 @@ python_datasource::python_datasource(parameters const& params)
         if((kv.first != "type") && (kv.first != "factory"))
         {
             kwargs_.emplace(kv.first, *params.get<std::string>(kv.first));
+        }
+        else
+        {
+            std::cout << "Wow, " << kv.first << std::endl;
+            params.set_visited(kv.first);
         }
     }
 
@@ -89,6 +94,7 @@ python_datasource::python_datasource(parameters const& params)
     {
         throw mapnik::datasource_exception(extractException());
     }
+    desc_.set_extra_parameters(params);
 }
 
 python_datasource::~python_datasource() { }

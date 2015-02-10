@@ -86,7 +86,7 @@ public:
     using spatial_index_type = boost::geometry::index::rtree<item_type,geojson_linear<16,4> >;
 
     // constructor
-    geojson_datasource(mapnik::parameters const& params);
+    geojson_datasource(mapnik::parameters & params);
     virtual ~geojson_datasource ();
     mapnik::datasource::datasource_t type() const;
     static const char * name();

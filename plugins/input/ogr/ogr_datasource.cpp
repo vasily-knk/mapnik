@@ -62,7 +62,7 @@ using mapnik::filter_in_box;
 using mapnik::filter_at_point;
 
 
-ogr_datasource::ogr_datasource(parameters const& params)
+ogr_datasource::ogr_datasource(parameters & params)
     : datasource(params),
       extent_(),
       type_(datasource::Vector),
@@ -83,7 +83,7 @@ ogr_datasource::~ogr_datasource()
 #endif
 }
 
-void ogr_datasource::init(mapnik::parameters const& params)
+void ogr_datasource::init(mapnik::parameters & params)
 {
 #ifdef MAPNIK_STATS
     mapnik::progress_timer __stats__(std::clog, "ogr_datasource::init");
@@ -283,6 +283,8 @@ void ogr_datasource::init(mapnik::parameters const& params)
         }
         extent_.init(envelope.MinX, envelope.MinY, envelope.MaxX, envelope.MaxY);
     }
+
+    desc_.set_extra_parameters(params);
 
     // scan for index file
     // TODO - layer names don't match dataset name, so this will break for

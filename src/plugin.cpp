@@ -79,7 +79,7 @@ PluginInfo::~PluginInfo()
 {
     if (module_)
     {
-#ifdef MAPNIK_SUPPORTS_DLOPEN
+#if defined(MAPNIK_SUPPORTS_DLOPEN) && !defined(DISABLE_DLCLOSE)
         if (module_->dl) dlclose(module_->dl),module_->dl=0;
 #endif
         delete module_;

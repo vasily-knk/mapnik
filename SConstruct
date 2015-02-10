@@ -409,6 +409,7 @@ opts.AddVariables(
     BoolVariable('COLOR_PRINT', 'Print build status information in color', 'True'),
     BoolVariable('SAMPLE_INPUT_PLUGINS', 'Compile and install sample plugins', 'False'),
     BoolVariable('BIGINT', 'Compile support for 64-bit integers in mapnik::value', 'True'),
+    BoolVariable('DISABLE_DLCLOSE', 'Disables calling dlclose when plugins are unloaded', 'False'),
     )
 
 # variables to pickle after successful configure step
@@ -479,6 +480,7 @@ pickle_store = [# Scons internal variables
         'SQLITE_LINKFLAGS',
         'BOOST_LIB_VERSION_FROM_HEADER',
         'BIGINT',
+        'DISABLE_DLCLOSE',
         'HOST'
         ]
 
@@ -1321,6 +1323,9 @@ if not preconfigured:
 
     if env['BIGINT']:
         env.Append(CPPDEFINES = '-DBIGINT')
+
+    if env['DISABLE_DLCLOSE']:
+        env.Append(CPPDEFINES = '-DDISABLE_DLCLOSE')
 
     if env['THREADING'] == 'multi':
         thread_flag = thread_suffix

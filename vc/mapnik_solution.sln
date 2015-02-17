@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mapnik", "mapnik\mapnik.vcxproj", "{CBF62218-F326-4C90-AF64-454384225570}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "agg", "agg\agg.vcxproj", "{B62B68FD-CC57-4563-81AF-E808450E6C22}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "clipper", "clipper\clipper.vcxproj", "{F321A0BA-DBC4-451D-BB83-AE941E0DC88D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mapnik_agg", "mapnik_agg\mapnik_agg.vcxproj", "{F18507ED-340E-4C75-BE76-203E66D51694}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mapnik_formatting", "mapnik_formatting\mapnik_formatting.vcxproj", "{D09D6FDC-8B0D-48F0-894B-7C69BBFC6D5A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mapnik_text_placements", "mapnik_text_placements\mapnik_text_placements.vcxproj", "{5DC17B01-D855-4248-BC45-3F134973458E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mapnik_json", "mapnik_json\mapnik_json.vcxproj", "{0B5D8927-2023-4804-8F0B-0DF651319D23}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mapnik_wkt", "mapnik_wkt\mapnik_wkt.vcxproj", "{636625AD-CC1E-4486-B46B-6B45654D2853}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mapnik_grid", "mapnik_grid\mapnik_grid.vcxproj", "{50002ABA-8169-43B7-B820-EEBD1E82A59B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mapnik_svg", "mapnik_svg\mapnik_svg.vcxproj", "{723FBF10-7983-40EB-8DF7-94E5397FFB5A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plugin_shape", "plugin_shape\plugin_shape.vcxproj", "{DD2922FF-A47D-439B-9789-1B6BFF127471}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "plugin_postgis", "plugin_postgis\plugin_postgis.vcxproj", "{FC5EE8CA-63AD-4A5B-A9C3-FC9B7CEF0418}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBF62218-F326-4C90-AF64-454384225570}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CBF62218-F326-4C90-AF64-454384225570}.Debug|Win32.Build.0 = Debug|Win32
+		{CBF62218-F326-4C90-AF64-454384225570}.Release|Win32.ActiveCfg = Release|Win32
+		{CBF62218-F326-4C90-AF64-454384225570}.Release|Win32.Build.0 = Release|Win32
+		{B62B68FD-CC57-4563-81AF-E808450E6C22}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B62B68FD-CC57-4563-81AF-E808450E6C22}.Debug|Win32.Build.0 = Debug|Win32
+		{B62B68FD-CC57-4563-81AF-E808450E6C22}.Release|Win32.ActiveCfg = Release|Win32
+		{B62B68FD-CC57-4563-81AF-E808450E6C22}.Release|Win32.Build.0 = Release|Win32
+		{F321A0BA-DBC4-451D-BB83-AE941E0DC88D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F321A0BA-DBC4-451D-BB83-AE941E0DC88D}.Debug|Win32.Build.0 = Debug|Win32
+		{F321A0BA-DBC4-451D-BB83-AE941E0DC88D}.Release|Win32.ActiveCfg = Release|Win32
+		{F321A0BA-DBC4-451D-BB83-AE941E0DC88D}.Release|Win32.Build.0 = Release|Win32
+		{F18507ED-340E-4C75-BE76-203E66D51694}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F18507ED-340E-4C75-BE76-203E66D51694}.Debug|Win32.Build.0 = Debug|Win32
+		{F18507ED-340E-4C75-BE76-203E66D51694}.Release|Win32.ActiveCfg = Release|Win32
+		{F18507ED-340E-4C75-BE76-203E66D51694}.Release|Win32.Build.0 = Release|Win32
+		{D09D6FDC-8B0D-48F0-894B-7C69BBFC6D5A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D09D6FDC-8B0D-48F0-894B-7C69BBFC6D5A}.Debug|Win32.Build.0 = Debug|Win32
+		{D09D6FDC-8B0D-48F0-894B-7C69BBFC6D5A}.Release|Win32.ActiveCfg = Release|Win32
+		{D09D6FDC-8B0D-48F0-894B-7C69BBFC6D5A}.Release|Win32.Build.0 = Release|Win32
+		{5DC17B01-D855-4248-BC45-3F134973458E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5DC17B01-D855-4248-BC45-3F134973458E}.Debug|Win32.Build.0 = Debug|Win32
+		{5DC17B01-D855-4248-BC45-3F134973458E}.Release|Win32.ActiveCfg = Release|Win32
+		{5DC17B01-D855-4248-BC45-3F134973458E}.Release|Win32.Build.0 = Release|Win32
+		{0B5D8927-2023-4804-8F0B-0DF651319D23}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0B5D8927-2023-4804-8F0B-0DF651319D23}.Debug|Win32.Build.0 = Debug|Win32
+		{0B5D8927-2023-4804-8F0B-0DF651319D23}.Release|Win32.ActiveCfg = Release|Win32
+		{0B5D8927-2023-4804-8F0B-0DF651319D23}.Release|Win32.Build.0 = Release|Win32
+		{636625AD-CC1E-4486-B46B-6B45654D2853}.Debug|Win32.ActiveCfg = Debug|Win32
+		{636625AD-CC1E-4486-B46B-6B45654D2853}.Debug|Win32.Build.0 = Debug|Win32
+		{636625AD-CC1E-4486-B46B-6B45654D2853}.Release|Win32.ActiveCfg = Release|Win32
+		{636625AD-CC1E-4486-B46B-6B45654D2853}.Release|Win32.Build.0 = Release|Win32
+		{50002ABA-8169-43B7-B820-EEBD1E82A59B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{50002ABA-8169-43B7-B820-EEBD1E82A59B}.Debug|Win32.Build.0 = Debug|Win32
+		{50002ABA-8169-43B7-B820-EEBD1E82A59B}.Release|Win32.ActiveCfg = Release|Win32
+		{50002ABA-8169-43B7-B820-EEBD1E82A59B}.Release|Win32.Build.0 = Release|Win32
+		{723FBF10-7983-40EB-8DF7-94E5397FFB5A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{723FBF10-7983-40EB-8DF7-94E5397FFB5A}.Debug|Win32.Build.0 = Debug|Win32
+		{723FBF10-7983-40EB-8DF7-94E5397FFB5A}.Release|Win32.ActiveCfg = Release|Win32
+		{723FBF10-7983-40EB-8DF7-94E5397FFB5A}.Release|Win32.Build.0 = Release|Win32
+		{DD2922FF-A47D-439B-9789-1B6BFF127471}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DD2922FF-A47D-439B-9789-1B6BFF127471}.Debug|Win32.Build.0 = Debug|Win32
+		{DD2922FF-A47D-439B-9789-1B6BFF127471}.Release|Win32.ActiveCfg = Release|Win32
+		{DD2922FF-A47D-439B-9789-1B6BFF127471}.Release|Win32.Build.0 = Release|Win32
+		{FC5EE8CA-63AD-4A5B-A9C3-FC9B7CEF0418}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FC5EE8CA-63AD-4A5B-A9C3-FC9B7CEF0418}.Debug|Win32.Build.0 = Debug|Win32
+		{FC5EE8CA-63AD-4A5B-A9C3-FC9B7CEF0418}.Release|Win32.ActiveCfg = Release|Win32
+		{FC5EE8CA-63AD-4A5B-A9C3-FC9B7CEF0418}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CBF62218-F326-4C90-AF64-454384225570}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>mapnik</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\mapnik.props" />
+    <Import Project="..\mapnik_lib.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\mapnik_lib.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;MAPNIK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;MAPNIK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\box2d.cpp" />
+    <ClCompile Include="..\..\src\building_symbolizer.cpp" />
+    <ClCompile Include="..\..\src\cairo_context.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cairo_renderer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\color.cpp" />
+    <ClCompile Include="..\..\src\color_factory.cpp" />
+    <ClCompile Include="..\..\src\config_error.cpp" />
+    <ClCompile Include="..\..\src\conversions.cpp" />
+    <ClCompile Include="..\..\src\css_color_grammar.cpp" />
+    <ClCompile Include="..\..\src\datasource_cache.cpp" />
+    <ClCompile Include="..\..\src\datasource_cache_static.cpp" />
+    <ClCompile Include="..\..\src\debug.cpp" />
+    <ClCompile Include="..\..\src\debug_symbolizer.cpp" />
+    <ClCompile Include="..\..\src\deepcopy.cpp" />
+    <ClCompile Include="..\..\src\distance.cpp" />
+    <ClCompile Include="..\..\src\expression.cpp" />
+    <ClCompile Include="..\..\src\expression_grammar.cpp" />
+    <ClCompile Include="..\..\src\expression_node.cpp" />
+    <ClCompile Include="..\..\src\expression_string.cpp" />
+    <ClCompile Include="..\..\src\feature_kv_iterator.cpp" />
+    <ClCompile Include="..\..\src\feature_style_processor.cpp" />
+    <ClCompile Include="..\..\src\feature_type_style.cpp" />
+    <ClCompile Include="..\..\src\font_engine_freetype.cpp" />
+    <ClCompile Include="..\..\src\font_set.cpp" />
+    <ClCompile Include="..\..\src\fs.cpp" />
+    <ClCompile Include="..\..\src\gamma_method.cpp" />
+    <ClCompile Include="..\..\src\gradient.cpp" />
+    <ClCompile Include="..\..\src\graphics.cpp" />
+    <ClCompile Include="..\..\src\image_compositing.cpp" />
+    <ClCompile Include="..\..\src\image_filter_grammar.cpp" />
+    <ClCompile Include="..\..\src\image_filter_types.cpp" />
+    <ClCompile Include="..\..\src\image_reader.cpp" />
+    <ClCompile Include="..\..\src\image_scaling.cpp" />
+    <ClCompile Include="..\..\src\image_util.cpp" />
+    <ClCompile Include="..\..\src\jpeg_reader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\layer.cpp" />
+    <ClCompile Include="..\..\src\libxml2_loader.cpp" />
+    <ClCompile Include="..\..\src\line_pattern_symbolizer.cpp" />
+    <ClCompile Include="..\..\src\line_symbolizer.cpp" />
+    <ClCompile Include="..\..\src\load_map.cpp" />
+    <ClCompile Include="..\..\src\map.cpp" />
+    <ClCompile Include="..\..\src\mapped_memory_cache.cpp" />
+    <ClCompile Include="..\..\src\markers_symbolizer.cpp" />
+    <ClCompile Include="..\..\src\marker_cache.cpp" />
+    <ClCompile Include="..\..\src\memory.cpp" />
+    <ClCompile Include="..\..\src\memory_datasource.cpp" />
+    <ClCompile Include="..\..\src\miniz.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\miniz_png.cpp" />
+    <ClCompile Include="..\..\src\palette.cpp" />
+    <ClCompile Include="..\..\src\params.cpp" />
+    <ClCompile Include="..\..\src\parse_path.cpp" />
+    <ClCompile Include="..\..\src\parse_transform.cpp" />
+    <ClCompile Include="..\..\src\path_expression_grammar.cpp" />
+    <ClCompile Include="..\..\src\placement_finder.cpp" />
+    <ClCompile Include="..\..\src\plugin.cpp" />
+    <ClCompile Include="..\..\src\png_reader.cpp" />
+    <ClCompile Include="..\..\src\point_symbolizer.cpp" />
+    <ClCompile Include="..\..\src\polygon_pattern_symbolizer.cpp" />
+    <ClCompile Include="..\..\src\polygon_symbolizer.cpp" />
+    <ClCompile Include="..\..\src\processed_text.cpp" />
+    <ClCompile Include="..\..\src\projection.cpp" />
+    <ClCompile Include="..\..\src\proj_transform.cpp" />
+    <ClCompile Include="..\..\src\rapidxml_loader.cpp" />
+    <ClCompile Include="..\..\src\raster_colorizer.cpp" />
+    <ClCompile Include="..\..\src\raster_symbolizer.cpp" />
+    <ClCompile Include="..\..\src\request.cpp" />
+    <ClCompile Include="..\..\src\rule.cpp" />
+    <ClCompile Include="..\..\src\save_map.cpp" />
+    <ClCompile Include="..\..\src\scale_denominator.cpp" />
+    <ClCompile Include="..\..\src\shield_symbolizer.cpp" />
+    <ClCompile Include="..\..\src\simplify.cpp" />
+    <ClCompile Include="..\..\src\stroke.cpp" />
+    <ClCompile Include="..\..\src\symbolizer.cpp" />
+    <ClCompile Include="..\..\src\symbolizer_helpers.cpp" />
+    <ClCompile Include="..\..\src\text_properties.cpp" />
+    <ClCompile Include="..\..\src\text_symbolizer.cpp" />
+    <ClCompile Include="..\..\src\tiff_reader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\transform_expression.cpp" />
+    <ClCompile Include="..\..\src\transform_expression_grammar.cpp" />
+    <ClCompile Include="..\..\src\unicode.cpp" />
+    <ClCompile Include="..\..\src\utils.cpp" />
+    <ClCompile Include="..\..\src\warp.cpp" />
+    <ClCompile Include="..\..\src\well_known_srs.cpp" />
+    <ClCompile Include="..\..\src\wkb.cpp" />
+    <ClCompile Include="..\..\src\xml_tree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\build.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\vc_header.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\agg\agg.vcxproj">
+      <Project>{b62b68fd-cc57-4563-81af-e808450e6c22}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\clipper\clipper.vcxproj">
+      <Project>{f321a0ba-dbc4-451d-bb83-ae941e0dc88d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\mapnik_agg\mapnik_agg.vcxproj">
+      <Project>{f18507ed-340e-4c75-be76-203e66d51694}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\mapnik_formatting\mapnik_formatting.vcxproj">
+      <Project>{d09d6fdc-8b0d-48f0-894b-7c69bbfc6d5a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\mapnik_grid\mapnik_grid.vcxproj">
+      <Project>{50002aba-8169-43b7-b820-eebd1e82a59b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\mapnik_svg\mapnik_svg.vcxproj">
+      <Project>{723fbf10-7983-40eb-8df7-94e5397ffb5a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\mapnik_text_placements\mapnik_text_placements.vcxproj">
+      <Project>{5dc17b01-d855-4248-bc45-3f134973458e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\mapnik_wkt\mapnik_wkt.vcxproj">
+      <Project>{636625ad-cc1e-4486-b46b-6b45654d2853}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

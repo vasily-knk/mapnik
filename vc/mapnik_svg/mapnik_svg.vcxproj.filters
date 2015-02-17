@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\src\svg\svg_parser.cpp" />
+    <ClCompile Include="..\..\src\svg\svg_path_parser.cpp" />
+    <ClCompile Include="..\..\src\svg\svg_points_parser.cpp" />
+    <ClCompile Include="..\..\src\svg\svg_transform_parser.cpp" />
+    <ClCompile Include="..\..\src\svg\output\process_building_symbolizer.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\process_line_pattern_symbolizer.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\process_line_symbolizer.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\process_markers_symbolizer.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\process_point_symbolizer.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\process_polygon_pattern_symbolizer.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\process_polygon_symbolizer.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\process_raster_symbolizer.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\process_shield_symbolizer.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\process_symbolizers.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\process_text_symbolizer.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\svg_generator.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\svg_output_attributes.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\svg\output\svg_renderer.cpp">
+      <Filter>output</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="output">
+      <UniqueIdentifier>{31ec0e73-38dc-45c3-9b5a-680b9473a62d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

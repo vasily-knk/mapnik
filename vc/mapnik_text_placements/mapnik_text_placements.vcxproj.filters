@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\src\text_placements\base.cpp" />
+    <ClCompile Include="..\..\src\text_placements\dummy.cpp" />
+    <ClCompile Include="..\..\src\text_placements\list.cpp" />
+    <ClCompile Include="..\..\src\text_placements\registry.cpp" />
+    <ClCompile Include="..\..\src\text_placements\simple.cpp" />
+  </ItemGroup>
+</Project>
